@@ -170,8 +170,8 @@ runs/
 checkpoints/
 outputs/
 outputs
-samples/
-samples
+# samples/
+# samples
 logs/
 pretrained_models/
 pretrained_models
