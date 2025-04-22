@@ -1,0 +1,36 @@
+#!/bin/bash
+#SBATCH --partition=gpu_h100
+#SBATCH --gpus=1
+#SBATCH --job-name=sora_i2v_run
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --time=01:00:00
+#SBATCH --output=job_outputs/sora_i2v_%A.out
+
+# Step 1: Load Anaconda
+module purge
+module load 2023
+module load Anaconda3/2023.07-2
+module load CUDA/12.1.1  # <-- this is the fix that adds missing cuda_runtime_api.h
+
+
+eval "$(/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/bin/conda shell.bash hook)" # doesnt work without it
+
+conda activate opensora
+
+pip install git+https://github.com/hpcaitech/TensorNVMe.git
+
+cd $HOME/Open-Sora
+
+# torchrun --nproc_per_node 1 --standalone scripts/diffusion/inference.py \
+#   configs/diffusion/inference/t2i2v_256px.py \
+#   --save-dir samples \
+#   --prompt "A man with placeholder face works at a computer" \
+
+# export OPENAI_API_KEY=
+
+torchrun --nproc_per_node 1 --standalone scripts/diffusion/inference.py \
+ configs/diffusion/inference/256px.py \
+ --cond_type i2v_head \
+ --prompt "A man "\
+  --ref ref_images/iwo_face.png

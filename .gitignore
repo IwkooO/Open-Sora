@@ -196,3 +196,5 @@ exps
 ckpts
 flash-attention
 datasets
+ref_images/
+job_outputs/
