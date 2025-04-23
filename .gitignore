@@ -171,7 +171,6 @@ checkpoints/
 outputs/
 outputs
 samples/
-samples
 logs/
 pretrained_models/
 pretrained_models
@@ -198,3 +197,8 @@ flash-attention
 datasets
 ref_images/
 job_outputs/
+
+# PhotoMaker
+PhotoMaker/examples
+PhotoMaker/job_outputs
+PhotoMaker/outputs

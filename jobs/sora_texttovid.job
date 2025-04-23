@@ -25,4 +25,4 @@ cd $HOME/Open-Sora
 torchrun --nproc_per_node 1 --standalone scripts/diffusion/inference.py \
   configs/diffusion/inference/t2i2v_256px.py \
   --save-dir samples \
-  --prompt "A man with placeholder face works at a computer" \
+  --prompt "A playful dog in a pink coat with a red leash dashes across a muddy field with sparse crops. The camera tracks its energetic movement from right to left, following the dog so it stays in the center against a backdrop of trees and distant power lines under an overcast sky. The realistic, medium shot captures a candid, lively moment in soft, diffused light." \

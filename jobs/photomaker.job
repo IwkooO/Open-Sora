@@ -1,0 +1,41 @@
+#!/bin/bash
+#SBATCH --partition=gpu_a100
+#SBATCH --gpus=1
+#SBATCH --job-name=photoMaker
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=9
+#SBATCH --time=01:00:00
+#SBATCH --output=job_outputs/setup_photoMaker_%A.out
+
+# Step 1: Load required modules
+module purge
+module load 2023
+module load Anaconda3/2023.07-2
+eval "$(/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/bin/conda shell.bash hook)"
+# conda activate opensora
+
+cd $HOME/Open-Sora/PhotoMaker
+
+conda create --name photomaker python=3.10
+conda activate photomaker
+# pip install -U pip
+
+# # Install requirements
+# pip install -r requirements.txt
+# # pip install diffusers
+# pip install diffusers==0.29.1
+# pip install accelerate
+# pip install git+https://github.com/TencentARC/PhotoMaker.git
+# pip install einops
+# pip install onnxruntime-gpu
+# pip install "huggingface_hub[cli]"
+
+export HF_HUB_DOWNLOAD_TIMEOUT=300
+
+
+
+# srun python run_photomaker.py --input_folder ./examples/lebron --output_folder ./outputs/iron_lebron
+srun python run_photomaker.py --input_folder ./examples/iwo --output_folder ./outputs/iwo
+# srun python run_photomaker.py --input_folder ./examples/verstappen --output_folder ./outputs/verstappen
+# pip install modelscope
+# modelscope download hpcai-tech/Open-Sora-v2 --local_dir ./ckpts

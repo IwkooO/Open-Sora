@@ -32,5 +32,7 @@ cd $HOME/Open-Sora
 torchrun --nproc_per_node 1 --standalone scripts/diffusion/inference.py \
  configs/diffusion/inference/256px.py \
  --cond_type i2v_head \
- --prompt "A man "\
-  --ref ref_images/iwo_face.png
+ --prompt "A closeup portrait video of a man img in Iron man suit, face, slim body, high quality, film grain."\
+ --ref PhotoMaker/outputs/iwo/photomaker_01.png
+
+
