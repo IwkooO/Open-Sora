@@ -23,6 +23,26 @@ from opensora.utils.inference import (
 # ======================================================
 # Sampling Options
 # ======================================================
+import torchvision.transforms as T
+from PIL import Image
+
+def load_image(path, device, dtype, height, width, num_frames=16):
+    image = Image.open(path).convert("RGB")
+    preprocess = T.Compose([
+        T.Resize((height, width)),
+        T.ToTensor()
+    ])
+    image = preprocess(image).unsqueeze(0).unsqueeze(2)  
+    image = image.repeat(1, 1, num_frames, 1, 1)
+    image = image.to(device, dtype)
+    return image
+
+
+def personalize_latent(z, noise_level=0.0):
+    if noise_level > 0:
+        noise = torch.randn_like(z)
+        z = (1 - noise_level) * z + noise_level * noise
+    return z
 
 
 @dataclass
@@ -565,6 +585,8 @@ def prepare_api(
     model_t5: nn.Module,
     model_clip: nn.Module,
     optional_models: dict[str, nn.Module],
+    ref_image: str = None,
+    noise_level: float = 0.0,
 ) -> callable:
     """
     Prepare the API function for inference.
@@ -605,9 +627,8 @@ def prepare_api(
         device = next(model.parameters()).device
         dtype = next(model.parameters()).dtype
 
-        # passing seed will overwrite opt seed
         if seed is None:
-            # random seed if not provided
+
             seed = opt.seed if opt.seed is not None else random.randint(0, 2**32 - 1)
         if opt.is_causal_vae:
             num_frames = (
@@ -620,37 +641,31 @@ def prepare_api(
                 1 if opt.num_frames == 1 else opt.num_frames // opt.temporal_reduction
             )
 
-        z = get_noise(
-            len(text),
-            opt.height,
-            opt.width,
-            num_frames,
-            device,
-            dtype,
-            seed,
-            patch_size=patch_size,
-            channel=channel // (patch_size**2),
-        )
+        if ref_image is not None:
+
+            image = load_image(ref_image, device=device, dtype=dtype, height=opt.height, width=opt.width, num_frames=opt.num_frames)
+
+            vae_latent = model_ae.encode(image)
+            if isinstance(vae_latent, (list, tuple)):
+                vae_latent = vae_latent[0]
+            z = personalize_latent(vae_latent, noise_level=noise_level)
+            references = [(vae_latent[0, :, 0:1], vae_latent[0, :, -1:])] 
+        else:
+            z = get_noise(
+                len(text),
+                opt.height,
+                opt.width,
+                num_frames,
+                device,
+                dtype,
+                seed,
+                patch_size=patch_size,
+                channel=channel // (patch_size**2),
+            )
+            references = [None] * len(text)
+
         denoiser = SamplingMethodDict[opt.method]
 
-        # i2v reference conditions
-        references = [None] * len(text)
-        if cond_type != "t2v" and "ref" in kwargs:
-            reference_path_list = kwargs.pop("ref")
-            references = collect_references_batch(
-                reference_path_list,
-                cond_type,
-                model_ae,
-                (opt.height, opt.width),
-                is_causal=opt.is_causal_vae,
-            )
-        elif cond_type != "t2v":
-            print(
-                "your csv file doesn't have a ref column or is not processed properly. will default to cond_type t2v!"
-            )
-            cond_type = "t2v"
-
-        # timestep editing
         timesteps = get_schedule(
             opt.num_steps,
             (z.shape[-1] * z.shape[-2]) // patch_size**2,
@@ -659,7 +674,6 @@ def prepare_api(
             shift_alpha=opt.flow_shift,
         )
 
-        # prepare classifier-free guidance data (method specific)
         text, additional_inp = denoiser.prepare_guidance(
             text=text,
             optional_models=optional_models,
@@ -673,7 +687,6 @@ def prepare_api(
         inp.update(additional_inp)
 
         if opt.method in [SamplingMethod.I2V]:
-            # prepare references
             masks, masked_ref = prepare_inference_condition(
                 z, cond_type, ref_list=references, causal=opt.is_causal_vae
             )
@@ -690,7 +703,7 @@ def prepare_api(
             image_osci=opt.image_osci,
             scale_temporal_osci=(
                 opt.scale_temporal_osci and "i2v" in cond_type
-            ),  # don't use temporal osci for v2v or t2v
+            ), 
             flow_shift=opt.flow_shift,
             patch_size=patch_size,
         )

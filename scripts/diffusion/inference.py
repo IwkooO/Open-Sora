@@ -48,6 +48,8 @@ def main():
     # == parse configs ==
     cfg = parse_configs()
     cfg = parse_alias(cfg)
+    cfg.ref_image = getattr(cfg, "ref_image", None)
+    cfg.noise_level = getattr(cfg, "noise_level", 0.0)
 
     # == device and dtype ==
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -92,7 +94,7 @@ def main():
         dataset=dataset,
         batch_size=cfg.get("batch_size", 1),
         num_workers=cfg.get("num_workers", 4),
-        seed=cfg.get("seed", 1024),
+        seed=cfg.get("seed",1024),
         shuffle=False,
         drop_last=False,
         pin_memory=True,
@@ -136,7 +138,7 @@ def main():
         model_ae, _, _, _, _ = booster_ae.boost(model=model_ae)
         model_ae = model_ae.unwrap()
 
-    api_fn = prepare_api(model, model_ae, model_t5, model_clip, optional_models)
+    api_fn = prepare_api(model, model_ae, model_t5, model_clip, optional_models, ref_image=cfg.ref_image, noise_level=cfg.noise_level)
 
     # prepare image flux model if t2i2v
     if use_t2i2v:
