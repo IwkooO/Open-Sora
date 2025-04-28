@@ -136,7 +136,15 @@ def main():
         model_ae, _, _, _, _ = booster_ae.boost(model=model_ae)
         model_ae = model_ae.unwrap()
 
-    api_fn = prepare_api(model, model_ae, model_t5, model_clip, optional_models)
+    api_fn = prepare_api(
+        model, 
+        model_ae, 
+        model_t5, 
+        model_clip, 
+        optional_models,
+        default_ref_image_paths=[cfg.ref_image] if cfg.ref_image else None,
+        default_personalization_strength=cfg.noise_level
+    )
 
     # prepare image flux model if t2i2v
     if use_t2i2v:

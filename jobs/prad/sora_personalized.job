@@ -1,0 +1,41 @@
+#!/bin/bash
+#SBATCH --partition=gpu_h100
+#SBATCH --gpus=1
+#SBATCH --job-name=sora_personalized
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --time=01:00:00
+#SBATCH --output=/home/pnair/Open-Sora/jobs_outputs/clip_personalized/sora_prad_personalized.out
+
+# Step 1: Load Anaconda
+module purge
+module load 2023
+module load Anaconda3/2023.07-2
+module load CUDA/12.1.1  # <-- this is the fix that adds missing cuda_runtime_api.h
+
+
+eval "$(/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/bin/conda shell.bash hook)" # doesnt work without it
+
+conda activate opensora_prad
+
+
+#pip install git+https://github.com/hpcaitech/TensorNVMe.git
+
+cd $HOME/Open-Sora
+# echo "Installing opensora package in development mode"
+# echo "----------------------------------------------------------------------------------------"
+# pip install -v . # for development mode, `pip install -v -e .
+
+echo "Running personalized video generation"
+echo "----------------------------------------------------------------------------------------"
+# python /home/pnair/Open-Sora/personalization/generate_f.py
+
+
+cd $HOME/FOMO
+export PYTHONPATH=$PYTHONPATH:$HOME/FOMO/Open-Sora
+#python generate_noise.py 
+torchrun --nproc_per_node 1 --standalone /home/pnair/Open-Sora/scripts/diffusion/inference.py \
+  /home/pnair/Open-Sora/configs/diffusion/inference/t2i2v_256px.py \
+  --prompt "a dog running on the beach" \
+  --ref_image /home/pnair/Open-Sora/assets/texts/dog.jpeg \
+  --noise_level 0.1
