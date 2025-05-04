@@ -44,6 +44,13 @@ def personalize_latent(z, noise_level=0.0):
         z = (1 - noise_level) * z + noise_level * noise
     return z
 
+def compute_diffedit_mask(t5, ref_prompt, target_prompt, added_tokens, device, dtype, threshold=0.1):
+    ref_emb = t5(ref_prompt, added_tokens=added_tokens).to(device, dtype)
+    tgt_emb = t5(target_prompt, added_tokens=added_tokens).to(device, dtype)
+    diff = (ref_emb - tgt_emb).abs().sum(dim=-1, keepdim=True)  # shape: (B, L, 1)
+    mask = (diff > threshold).float()
+    return mask
+
 
 @dataclass
 class SamplingOption:
@@ -611,6 +618,7 @@ def prepare_api(
         neg: list[str] = None,
         patch_size: int = 2,
         channel: int = 16,
+        ref_prompt: list[str] = None,
         **kwargs,
     ):
         """
@@ -685,6 +693,10 @@ def prepare_api(
 
         inp = prepare(model_t5, model_clip, z, prompt=text, patch_size=patch_size)
         inp.update(additional_inp)
+
+        if ref_prompt is not None:
+            mask = compute_diffedit_mask(model_t5, ref_prompt, text, inp["txt"].shape[1], device, dtype)
+            inp["diffedit_mask"] = mask
 
         if opt.method in [SamplingMethod.I2V]:
             masks, masked_ref = prepare_inference_condition(

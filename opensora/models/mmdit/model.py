@@ -161,6 +161,7 @@ class MMDiTModel(nn.Module):
         y_vec: Tensor,  # clip encoded vec
         cond: Tensor = None,
         guidance: Tensor | None = None,
+        **kwargs,
     ):
         """
         obtain the processed:
@@ -189,15 +190,30 @@ class MMDiTModel(nn.Module):
         vec = vec + self.vector_in(y_vec)
 
         txt = self.txt_in(txt)
+        if "diffedit_mask" in kwargs:
+            mask = kwargs["diffedit_mask"]
+            txt = mask * txt + (1 - mask) * txt.mean(dim=1, keepdim=True)
+
+
 
         # concat: 4096 + t*h*2/4
         ids = torch.cat((txt_ids, img_ids), dim=1)
         pe = self.pe_embedder(ids)
+        if isinstance(pe, tuple):  # unpack if needed
+            pe = tuple(p.to(vec.dtype) for p in pe)
+        else:
+            pe = pe.to(vec.dtype)
+
 
         if self._input_requires_grad:
             # we only apply lora to double/single blocks, thus we only need to enable grad for these inputs
             img.requires_grad_()
             txt.requires_grad_()
+
+        img = img.to(vec.dtype)
+        txt = txt.to(vec.dtype)
+        pe = pe.to(vec.dtype)
+
 
         return img, txt, vec, pe
 
@@ -218,7 +234,7 @@ class MMDiTModel(nn.Module):
         **kwargs,
     ) -> Tensor:
         img, txt, vec, pe = self.prepare_block_inputs(
-            img, img_ids, txt, txt_ids, timesteps, y_vec, cond, guidance
+            img, img_ids, txt, txt_ids, timesteps, y_vec, cond, guidance, **kwargs
         )
 
         for block in self.double_blocks:
@@ -245,7 +261,7 @@ class MMDiTModel(nn.Module):
         **kwargs,
     ) -> Tensor:
         img, txt, vec, pe = self.prepare_block_inputs(
-            img, img_ids, txt, txt_ids, timesteps, y_vec, cond, guidance
+            img, img_ids, txt, txt_ids, timesteps, y_vec, cond, guidance, **kwargs
         )
 
         ckpt_depth_double = self.config.grad_ckpt_settings[0]

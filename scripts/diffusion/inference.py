@@ -50,7 +50,7 @@ def main():
     cfg = parse_alias(cfg)
     cfg.ref_image = getattr(cfg, "ref_image", None)
     cfg.noise_level = getattr(cfg, "noise_level", 0.0)
-
+    cfg.ref_prompt = getattr(cfg, "ref_prompt", None)
     # == device and dtype ==
     device = "cuda" if torch.cuda.is_available() else "cpu"
     dtype = to_torch_dtype(cfg.get("dtype", "bf16"))
@@ -232,6 +232,7 @@ def main():
                     patch_size=cfg.get("patch_size", 2),
                     save_prefix=cfg.get("save_prefix", ""),
                     channel=cfg["model"]["in_channels"],
+                    ref_prompt=cfg.ref_prompt,
                     **batch,
                 ).cpu()
 
