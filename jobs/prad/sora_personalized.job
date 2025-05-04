@@ -36,6 +36,8 @@ export PYTHONPATH=$PYTHONPATH:$HOME/FOMO/Open-Sora
 #python generate_noise.py 
 torchrun --nproc_per_node 1 --standalone /home/pnair/Open-Sora/scripts/diffusion/inference.py \
   /home/pnair/Open-Sora/configs/diffusion/inference/t2i2v_256px.py \
-  --prompt "a dog running on the beach" \
+  --prompt "a dog walking on the beach" \
   --ref_image /home/pnair/Open-Sora/assets/texts/dog.jpeg \
-  --noise_level 0.1
+  --noise_level 0.1 \
+  --ref_guidance_scale 10.0 \
+  --method personalized
