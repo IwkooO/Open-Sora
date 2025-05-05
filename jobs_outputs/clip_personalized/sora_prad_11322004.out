@@ -1,0 +1,48 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Running personalized video generation
+----------------------------------------------------------------------------------------
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/colossalai/shardformer/layer/normalization.py:48: UserWarning: Please install apex from source (https://github.com/NVIDIA/apex) to use the fused RMSNorm kernel
+  warnings.warn("Please install apex from source (https://github.com/NVIDIA/apex) to use the fused RMSNorm kernel")
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/colossalai/shardformer/layer/normalization.py:93: UserWarning: Please install apex from source (https://github.com/NVIDIA/apex) to use the fused RMSNorm kernel
+  warnings.warn(
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/xformers/ops/fmha/flash.py:211: FutureWarning: `torch.library.impl_abstract` was renamed to `torch.library.register_fake`. Please use that instead; we will remove `torch.library.impl_abstract` in a future version of PyTorch.
+  @torch.library.impl_abstract("xformers_flash::flash_fwd")
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/xformers/ops/fmha/flash.py:344: FutureWarning: `torch.library.impl_abstract` was renamed to `torch.library.register_fake`. Please use that instead; we will remove `torch.library.impl_abstract` in a future version of PyTorch.
+  @torch.library.impl_abstract("xformers_flash::flash_bwd")
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:05<00:05,  5.65s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.81s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.79s/it]
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/huggingface_hub/file_download.py:896: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Unused or unrecognized kwargs: padding.
+Traceback (most recent call last):
+  File "/home/pnair/Open-Sora/personalization/generate_j.py", line 86, in <module>
+    input_dict = prepare_ids(z, text_embedding=joint_embedding, clip_embedding=joint_embedding)
+TypeError: prepare_ids() got an unexpected keyword argument 'text_embedding'
+
+JOB STATISTICS
+==============
+Job ID: 11322004
+Cluster: snellius
+User/Group: pnair/pnair
+State: RUNNING
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:00
+CPU Efficiency: 0.00% of 00:19:12 core-walltime
+Job Wall-clock time: 00:01:12
+Memory Utilized: 0.00 MB
+Memory Efficiency: 0.00% of 180.00 GB (180.00 GB/node)
+WARNING: Efficiency statistics can only be obtained after the job has ended as seff tool is based on the accounting database data.

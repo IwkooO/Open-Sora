@@ -1,0 +1,62 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Running personalized video generation
+----------------------------------------------------------------------------------------
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/colossalai/shardformer/layer/normalization.py:48: UserWarning: Please install apex from source (https://github.com/NVIDIA/apex) to use the fused RMSNorm kernel
+  warnings.warn("Please install apex from source (https://github.com/NVIDIA/apex) to use the fused RMSNorm kernel")
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/colossalai/shardformer/layer/normalization.py:93: UserWarning: Please install apex from source (https://github.com/NVIDIA/apex) to use the fused RMSNorm kernel
+  warnings.warn(
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/xformers/ops/fmha/flash.py:211: FutureWarning: `torch.library.impl_abstract` was renamed to `torch.library.register_fake`. Please use that instead; we will remove `torch.library.impl_abstract` in a future version of PyTorch.
+  @torch.library.impl_abstract("xformers_flash::flash_fwd")
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/xformers/ops/fmha/flash.py:344: FutureWarning: `torch.library.impl_abstract` was renamed to `torch.library.register_fake`. Please use that instead; we will remove `torch.library.impl_abstract` in a future version of PyTorch.
+  @torch.library.impl_abstract("xformers_flash::flash_bwd")
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:05<00:05,  5.14s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:10<00:00,  5.28s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:10<00:00,  5.26s/it]
+/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/PIL/Image.py:3570: UserWarning: image file could not be identified because AVIF support not installed
+  warnings.warn(message)
+Traceback (most recent call last):
+  File "/home/pnair/Open-Sora/personalization/generate_f.py", line 29, in <module>
+    result = api_fn(
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/opensora/utils/sampling.py", line 640, in api_fn
+    references = collect_references_batch(
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/opensora/utils/inference.py", line 252, in collect_references_batch
+    r = read_from_path(ref_path[0], image_size, transform_name="resize_crop")  # size [C, T, H, W]
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/opensora/datasets/utils.py", line 199, in read_from_path
+    return read_image_from_path(path, image_size=image_size, transform_name=transform_name)
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/opensora/datasets/utils.py", line 173, in read_image_from_path
+    image = pil_loader(path)
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torchvision/datasets/folder.py", line 263, in pil_loader
+    img = Image.open(f)
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/PIL/Image.py", line 3572, in open
+    raise UnidentifiedImageError(msg)
+PIL.UnidentifiedImageError: cannot identify image file <_io.BufferedReader name='/home/scur0552/personalization/assets/ref_images/dog.jpg'>
+Generating personalized video using i2v_head...
+Generation failed:
+
+JOB STATISTICS
+==============
+Job ID: 11322134
+Cluster: snellius
+User/Group: pnair/pnair
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:01:46
+CPU Efficiency: 10.86% of 00:16:16 core-walltime
+Job Wall-clock time: 00:01:01
+Memory Utilized: 16.21 GB
+Memory Efficiency: 9.00% of 180.00 GB (180.00 GB/node)

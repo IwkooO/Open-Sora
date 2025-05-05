@@ -1,0 +1,149 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Running personalized video generation
+----------------------------------------------------------------------------------------
+/var/spool/slurm/slurmd/job11542401/slurm_script: line 34: cd: /home/pnair/FOMO: No such file or directory
+[05/03/25 11:28:18] INFO     colossalai - colossalai - INFO:                    
+                             /home/pnair/.conda/envs/opensora_prad/lib/python3.1
+                             0/site-packages/colossalai/initialize.py:75 launch 
+                    INFO     colossalai - colossalai - INFO: Distributed        
+                             environment is initialized, world size: 1          
+[[34m2025-05-03 11:28:18[0m] Inference configuration:
+ {'ae': {'from_pretrained': './ckpts/hunyuan_vae.safetensors',
+        'in_channels': 3,
+        'latent_channels': 16,
+        'layers_per_block': 2,
+        'out_channels': 3,
+        'type': 'hunyuan_vae',
+        'use_spatial_tiling': True,
+        'use_temporal_tiling': False},
+ 'batch_size': 1,
+ 'clip': {'from_pretrained': './ckpts/openai/clip-vit-large-patch14',
+          'max_length': 77,
+          'type': 'text_embedder'},
+ 'cond_type': 't2v',
+ 'config_path': '/home/pnair/Open-Sora/configs/diffusion/inference/t2i2v_256px.py',
+ 'dataset': {'type': 'text'},
+ 'dtype': 'bf16',
+ 'fps_save': 24,
+ 'img_flux': {'axes_dim': [16, 56, 56],
+              'cond_embed': False,
+              'context_in_dim': 4096,
+              'depth': 19,
+              'depth_single_blocks': 38,
+              'from_pretrained': './ckpts/flux1-dev.safetensors',
+              'guidance_embed': True,
+              'hidden_size': 3072,
+              'in_channels': 64,
+              'mlp_ratio': 4.0,
+              'num_heads': 24,
+              'qkv_bias': True,
+              'theta': 10000,
+              'type': 'flux',
+              'vec_in_dim': 768},
+ 'img_flux_ae': {'ch': 128,
+                 'ch_mult': [1, 2, 4, 4],
+                 'from_pretrained': './ckpts/flux1-dev-ae.safetensors',
+                 'in_channels': 3,
+                 'num_res_blocks': 2,
+                 'out_ch': 3,
+                 'resolution': 256,
+                 'scale_factor': 0.3611,
+                 'shift_factor': 0.1159,
+                 'type': 'autoencoder_2d',
+                 'z_channels': 16},
+ 'img_resolution': '768px',
+ 'method': 'personalized',
+ 'model': {'axes_dim': [16, 56, 56],
+           'cond_embed': True,
+           'context_in_dim': 4096,
+           'depth': 19,
+           'depth_single_blocks': 38,
+           'from_pretrained': './ckpts/Open_Sora_v2.safetensors',
+           'fused_qkv': False,
+           'guidance_embed': False,
+           'hidden_size': 3072,
+           'in_channels': 64,
+           'mlp_ratio': 4.0,
+           'num_heads': 24,
+           'qkv_bias': True,
+           'theta': 10000,
+           'type': 'flux',
+           'use_liger_rope': True,
+           'vec_in_dim': 768},
+ 'motion_score': '4',
+ 'noise_level': 0.1,
+ 'prompt': 'a dog walking on the beach',
+ 'ref_guidance_scale': 10.0,
+ 'ref_image': '/home/pnair/Open-Sora/assets/texts/dog.jpeg',
+ 'sampling_option': {'aspect_ratio': '16:9',
+                     'guidance': 7.5,
+                     'guidance_img': 3.0,
+                     'image_osci': True,
+                     'is_causal_vae': True,
+                     'method': 'i2v',
+                     'num_frames': 129,
+                     'num_steps': 50,
+                     'resolution': '256px',
+                     'scale_temporal_osci': True,
+                     'seed': None,
+                     'shift': True,
+                     'temporal_reduction': 4,
+                     'text_osci': True},
+ 'save_dir': 'samples',
+ 'seed': 42,
+ 't5': {'from_pretrained': './ckpts/google/t5-v1_1-xxl',
+        'max_length': 512,
+        'shardformer': True,
+        'type': 'text_embedder'},
+ 'use_t2i2v': True}
+[[34m2025-05-03 11:28:18[0m] Building dataset...
+[[34m2025-05-03 11:28:18[0m] Dataset contains 1 samples.
+[[34m2025-05-03 11:28:18[0m] Building models...
+[[34m2025-05-03 11:28:19[0m] Loading checkpoint from ./ckpts/Open_Sora_v2.safetensors
+[[34m2025-05-03 11:28:26[0m] Model loaded successfully
+[[34m2025-05-03 11:28:26[0m] Loading checkpoint from ./ckpts/hunyuan_vae.safetensors
+[[34m2025-05-03 11:28:26[0m] Model loaded successfully
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.39s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.56s/it]
+[[34m2025-05-03 11:28:34[0m] Loading checkpoint from ./ckpts/flux1-dev.safetensors
+[[34m2025-05-03 11:28:41[0m] Model loaded successfully
+[[34m2025-05-03 11:28:42[0m] Loading checkpoint from ./ckpts/flux1-dev-ae.safetensors
+[[34m2025-05-03 11:28:42[0m] Model loaded successfully
+[[34m2025-05-03 11:28:42[0m] CUDA max memory max memory allocated at build model: 54.2 GB
+[[34m2025-05-03 11:28:42[0m] CUDA max memory max memory reserved at build model: 54.3 GB
+Inference progress:   0%|          | 0/1 [00:00<?, ?it/s][[34m2025-05-03 11:28:42[0m] Generating image condition by flux...
+Saved to samples/video_256px/generated_condition/prompt_0000.png
+[[34m2025-05-03 11:28:51[0m] Generating video...
+Saved to samples/video_256px/prompt_0000.mp4
+Inference progress: 100%|██████████| 1/1 [01:13<00:00, 73.18s/it]Inference progress: 100%|██████████| 1/1 [01:13<00:00, 73.22s/it]
+[[34m2025-05-03 11:29:55[0m] Inference finished.
+[[34m2025-05-03 11:29:55[0m] CUDA max memory max memory allocated at inference: 74.8 GB
+[[34m2025-05-03 11:29:55[0m] CUDA max memory max memory reserved at inference: 88.5 GB
+[rank0]:[W503 11:29:56.713879369 ProcessGroupNCCL.cpp:1168] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+
+JOB STATISTICS
+==============
+Job ID: 11542401
+Cluster: snellius
+User/Group: pnair/pnair
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:02:30
+CPU Efficiency: 8.01% of 00:31:12 core-walltime
+Job Wall-clock time: 00:01:57
+Memory Utilized: 17.58 GB
+Memory Efficiency: 9.76% of 180.00 GB (180.00 GB/node)

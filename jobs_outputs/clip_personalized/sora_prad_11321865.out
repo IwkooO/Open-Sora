@@ -1,0 +1,519 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+
+EnvironmentNameNotFound: Could not find conda environment: opensora
+You can list all discoverable environments with `conda info --envs`.
+
+
+Installing opensora package in development mode
+----------------------------------------------------------------------------------------
+Using pip 23.2.1 from /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages/pip (python 3.11)
+Defaulting to user installation because normal site-packages is not writeable
+Processing /gpfs/home2/pnair/Open-Sora
+  Preparing metadata (setup.py): started
+  Running command python setup.py egg_info
+  running egg_info
+  creating /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info
+  writing /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info/PKG-INFO
+  writing dependency_links to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info/dependency_links.txt
+  writing requirements to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info/requires.txt
+  writing top-level names to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info/top_level.txt
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info/SOURCES.txt'
+  reading manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info/SOURCES.txt'
+  adding license file 'LICENSE'
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-uyvf4b93/opensora.egg-info/SOURCES.txt'
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting torch==2.4.0 (from opensora==2.0.0)
+  Obtaining dependency information for torch==2.4.0 from https://files.pythonhosted.org/packages/80/83/9b7681e41e59adb6c2b042f7e8eb716515665a6eed3dda4215c6b3385b90/torch-2.4.0-cp311-cp311-manylinux1_x86_64.whl.metadata
+  Using cached torch-2.4.0-cp311-cp311-manylinux1_x86_64.whl.metadata (26 kB)
+Collecting torchvision==0.19.0 (from opensora==2.0.0)
+  Obtaining dependency information for torchvision==0.19.0 from https://files.pythonhosted.org/packages/42/1d/efde76f826682ebe6ec97c2874f3c7e4833eb84497c521ce6cfac406ef34/torchvision-0.19.0-cp311-cp311-manylinux1_x86_64.whl.metadata
+  Using cached torchvision-0.19.0-cp311-cp311-manylinux1_x86_64.whl.metadata (6.0 kB)
+Collecting colossalai>=0.4.4 (from opensora==2.0.0)
+  Using cached colossalai-0.4.9.tar.gz (1.4 MB)
+  Preparing metadata (setup.py): started
+  Running command python setup.py egg_info
+  running egg_info
+  creating /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info
+  writing /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/PKG-INFO
+  writing dependency_links to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/dependency_links.txt
+  writing entry points to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/entry_points.txt
+  writing requirements to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/requires.txt
+  writing top-level names to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/top_level.txt
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/SOURCES.txt'
+  reading manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  warning: no files found matching '*.tr' under directory 'colossalai'
+  warning: no files found matching '*.cc' under directory 'colossalai'
+  warning: no files found matching '*.pyi' under directory 'colossalai'
+  warning: no files found matching '*.tr' under directory 'extensions'
+  warning: no files found matching '*.cc' under directory 'extensions'
+  warning: no files found matching '*.pyi' under directory 'extensions'
+  adding license file 'LICENSE'
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-mcf0dglu/colossalai.egg-info/SOURCES.txt'
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting mmengine>=0.10.3 (from opensora==2.0.0)
+  Obtaining dependency information for mmengine>=0.10.3 from https://files.pythonhosted.org/packages/98/8e/f98332248aad102511bea4ae19c0ddacd2f0a994f3ca4c82b7a369e0af8b/mmengine-0.10.7-py3-none-any.whl.metadata
+  Using cached mmengine-0.10.7-py3-none-any.whl.metadata (20 kB)
+Collecting ftfy>=6.2.0 (from opensora==2.0.0)
+  Obtaining dependency information for ftfy>=6.2.0 from https://files.pythonhosted.org/packages/ab/6e/81d47999aebc1b155f81eca4477a616a70f238a2549848c38983f3c22a82/ftfy-6.3.1-py3-none-any.whl.metadata
+  Using cached ftfy-6.3.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting accelerate>=0.29.2 (from opensora==2.0.0)
+  Obtaining dependency information for accelerate>=0.29.2 from https://files.pythonhosted.org/packages/63/b1/8198e3cdd11a426b1df2912e3381018c4a4a55368f6d0857ba3ca418ef93/accelerate-1.6.0-py3-none-any.whl.metadata
+  Using cached accelerate-1.6.0-py3-none-any.whl.metadata (19 kB)
+Collecting av==13.1.0 (from opensora==2.0.0)
+  Obtaining dependency information for av==13.1.0 from https://files.pythonhosted.org/packages/e5/bb/2e03acb9b27591d97f700a3a6c27cfd1bc53fa148177747eda8a70cca1e9/av-13.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Using cached av-13.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.4 kB)
+Collecting liger-kernel==0.5.2 (from opensora==2.0.0)
+  Obtaining dependency information for liger-kernel==0.5.2 from https://files.pythonhosted.org/packages/fc/9e/b05809867d937dbcba4d8717197f69d05a1d41087e7a5c2fdbd5cae79c33/liger_kernel-0.5.2-py3-none-any.whl.metadata
+  Downloading liger_kernel-0.5.2-py3-none-any.whl.metadata (20 kB)
+Requirement already satisfied: pandas>=2.0.3 in /home/pnair/.local/lib/python3.11/site-packages (from opensora==2.0.0) (2.1.4)
+Collecting pandarallel>=1.6.5 (from opensora==2.0.0)
+  Downloading pandarallel-1.6.5.tar.gz (14 kB)
+  Preparing metadata (setup.py): started
+  Running command python setup.py egg_info
+  running egg_info
+  creating /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info
+  writing /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info/PKG-INFO
+  writing dependency_links to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info/dependency_links.txt
+  writing requirements to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info/requires.txt
+  writing top-level names to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info/top_level.txt
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info/SOURCES.txt'
+  reading manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info/SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  adding license file 'LICENSE'
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-bkuhjncy/pandarallel.egg-info/SOURCES.txt'
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting openai>=1.52.2 (from opensora==2.0.0)
+  Obtaining dependency information for openai>=1.52.2 from https://files.pythonhosted.org/packages/80/9a/f34f163294345f123673ed03e77c33dee2534f3ac1f9d18120384457304d/openai-1.75.0-py3-none-any.whl.metadata
+  Downloading openai-1.75.0-py3-none-any.whl.metadata (25 kB)
+Collecting wandb>=0.17.0 (from opensora==2.0.0)
+  Obtaining dependency information for wandb>=0.17.0 from https://files.pythonhosted.org/packages/89/d0/737d26d709bd7bc3f6b2250f41fda3d0787239cfdbd6eb13057c64c81ace/wandb-0.19.9-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading wandb-0.19.9-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (10 kB)
+Requirement already satisfied: tensorboard>=2.14.0 in /home/pnair/.local/lib/python3.11/site-packages (from opensora==2.0.0) (2.15.2)
+Collecting pre-commit>=3.5.0 (from opensora==2.0.0)
+  Obtaining dependency information for pre-commit>=3.5.0 from https://files.pythonhosted.org/packages/88/74/a88bf1b1efeae488a0c0b7bdf71429c313722d1fc0f377537fbe554e6180/pre_commit-4.2.0-py2.py3-none-any.whl.metadata
+  Downloading pre_commit-4.2.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting omegaconf>=2.3.0 (from opensora==2.0.0)
+  Obtaining dependency information for omegaconf>=2.3.0 from https://files.pythonhosted.org/packages/e3/94/1843518e420fa3ed6919835845df698c7e27e183cb997394e4a670973a65/omegaconf-2.3.0-py3-none-any.whl.metadata
+  Downloading omegaconf-2.3.0-py3-none-any.whl.metadata (3.9 kB)
+Requirement already satisfied: pyarrow in /home/pnair/.local/lib/python3.11/site-packages (from opensora==2.0.0) (14.0.2)
+Collecting triton>=2.3.1 (from liger-kernel==0.5.2->opensora==2.0.0)
+  Obtaining dependency information for triton>=2.3.1 from https://files.pythonhosted.org/packages/3c/c5/4874a81131cc9e934d88377fbc9d24319ae1fb540f3333b4e9c696ebc607/triton-3.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+  Downloading triton-3.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.5 kB)
+Requirement already satisfied: filelock in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (3.13.1)
+Requirement already satisfied: typing-extensions>=4.8.0 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (4.9.0)
+Requirement already satisfied: sympy in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (1.12)
+Requirement already satisfied: networkx in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (3.2.1)
+Requirement already satisfied: jinja2 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (3.1.2)
+Requirement already satisfied: fsspec in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (2023.10.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (12.1.105)
+Collecting nvidia-cudnn-cu12==9.1.0.70 (from torch==2.4.0->opensora==2.0.0)
+  Obtaining dependency information for nvidia-cudnn-cu12==9.1.0.70 from https://files.pythonhosted.org/packages/9f/fd/713452cd72343f682b1c7b9321e23829f00b842ceaedcda96e742ea0b0b3/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl.metadata
+  Downloading nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (12.1.0.106)
+Collecting nvidia-nccl-cu12==2.20.5 (from torch==2.4.0->opensora==2.0.0)
+  Obtaining dependency information for nvidia-nccl-cu12==2.20.5 from https://files.pythonhosted.org/packages/4b/2a/0a131f572aa09f741c30ccd45a8e56316e8be8dfc7bc19bf0ab7cfef7b19/nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl.metadata
+  Downloading nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl.metadata (1.8 kB)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /home/pnair/.local/lib/python3.11/site-packages (from torch==2.4.0->opensora==2.0.0) (12.1.105)
+Collecting triton>=2.3.1 (from liger-kernel==0.5.2->opensora==2.0.0)
+  Obtaining dependency information for triton>=2.3.1 from https://files.pythonhosted.org/packages/33/3e/a2f59384587eff6aeb7d37b6780de7fedd2214935e27520430ca9f5b7975/triton-3.0.0-1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata
+  Downloading triton-3.0.0-1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.3 kB)
+Requirement already satisfied: numpy in /home/pnair/.local/lib/python3.11/site-packages (from torchvision==0.19.0->opensora==2.0.0) (1.26.3)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /home/pnair/.local/lib/python3.11/site-packages (from torchvision==0.19.0->opensora==2.0.0) (10.2.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /home/pnair/.local/lib/python3.11/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch==2.4.0->opensora==2.0.0) (12.3.101)
+Requirement already satisfied: packaging>=20.0 in /home/pnair/.local/lib/python3.11/site-packages (from accelerate>=0.29.2->opensora==2.0.0) (23.2)
+Requirement already satisfied: psutil in /home/pnair/.local/lib/python3.11/site-packages (from accelerate>=0.29.2->opensora==2.0.0) (5.9.7)
+Requirement already satisfied: pyyaml in /home/pnair/.local/lib/python3.11/site-packages (from accelerate>=0.29.2->opensora==2.0.0) (6.0.1)
+Collecting huggingface-hub>=0.21.0 (from accelerate>=0.29.2->opensora==2.0.0)
+  Obtaining dependency information for huggingface-hub>=0.21.0 from https://files.pythonhosted.org/packages/93/27/1fb384a841e9661faad1c31cbfa62864f59632e876df5d795234da51c395/huggingface_hub-0.30.2-py3-none-any.whl.metadata
+  Downloading huggingface_hub-0.30.2-py3-none-any.whl.metadata (13 kB)
+Collecting safetensors>=0.4.3 (from accelerate>=0.29.2->opensora==2.0.0)
+  Obtaining dependency information for safetensors>=0.4.3 from https://files.pythonhosted.org/packages/a6/f8/dae3421624fcc87a89d42e1898a798bc7ff72c61f38973a65d60df8f124c/safetensors-0.5.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading safetensors-0.5.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.8 kB)
+Requirement already satisfied: tqdm in /home/pnair/.local/lib/python3.11/site-packages (from colossalai>=0.4.4->opensora==2.0.0) (4.66.1)
+Requirement already satisfied: rich in /home/pnair/.local/lib/python3.11/site-packages (from colossalai>=0.4.4->opensora==2.0.0) (13.7.0)
+Requirement already satisfied: click in /home/pnair/.local/lib/python3.11/site-packages (from colossalai>=0.4.4->opensora==2.0.0) (8.1.7)
+Collecting fabric (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for fabric from https://files.pythonhosted.org/packages/d6/1f/e99e23ee01847147fa194e8d41cfcf2535a2dbfcb51414c541cadb15c5d7/fabric-3.2.2-py3-none-any.whl.metadata
+  Downloading fabric-3.2.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting contexttimer (from colossalai>=0.4.4->opensora==2.0.0)
+  Downloading contexttimer-0.3.3.tar.gz (4.9 kB)
+  Preparing metadata (setup.py): started
+  Running command python setup.py egg_info
+  running egg_info
+  creating /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-vvll9czn/contexttimer.egg-info
+  writing /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-vvll9czn/contexttimer.egg-info/PKG-INFO
+  writing dependency_links to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-vvll9czn/contexttimer.egg-info/dependency_links.txt
+  writing top-level names to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-vvll9czn/contexttimer.egg-info/top_level.txt
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-vvll9czn/contexttimer.egg-info/SOURCES.txt'
+  reading manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-vvll9czn/contexttimer.egg-info/SOURCES.txt'
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-vvll9czn/contexttimer.egg-info/SOURCES.txt'
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting ninja (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for ninja from https://files.pythonhosted.org/packages/eb/7a/455d2877fe6cf99886849c7f9755d897df32eaf3a0fba47b56e615f880f7/ninja-1.11.1.4-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata
+  Downloading ninja-1.11.1.4-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.whl.metadata (5.0 kB)
+Requirement already satisfied: einops in /home/pnair/.local/lib/python3.11/site-packages (from colossalai>=0.4.4->opensora==2.0.0) (0.7.0)
+Requirement already satisfied: pydantic in /home/pnair/.local/lib/python3.11/site-packages (from colossalai>=0.4.4->opensora==2.0.0) (2.5.3)
+Collecting ray (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for ray from https://files.pythonhosted.org/packages/ac/6e/263863a31505e8d209a984830b38bbfeec7217a390e1fe475648d6529e4b/ray-2.44.1-cp311-cp311-manylinux2014_x86_64.whl.metadata
+  Downloading ray-2.44.1-cp311-cp311-manylinux2014_x86_64.whl.metadata (19 kB)
+Collecting sentencepiece (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for sentencepiece from https://files.pythonhosted.org/packages/fb/12/2f5c8d4764b00033cf1c935b702d3bb878d10be9f0b87f0253495832d85f/sentencepiece-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading sentencepiece-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Collecting google (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for google from https://files.pythonhosted.org/packages/ac/35/17c9141c4ae21e9a29a43acdfd848e3e468a810517f862cad07977bf8fe9/google-3.0.0-py2.py3-none-any.whl.metadata
+  Downloading google-3.0.0-py2.py3-none-any.whl.metadata (627 bytes)
+Requirement already satisfied: protobuf in /home/pnair/.local/lib/python3.11/site-packages (from colossalai>=0.4.4->opensora==2.0.0) (4.25.1)
+Collecting transformers==4.39.3 (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for transformers==4.39.3 from https://files.pythonhosted.org/packages/15/fc/7b6dd7e1adc0a6407b845ed4be1999e98b6917d0694e57316d140cc85484/transformers-4.39.3-py3-none-any.whl.metadata
+  Downloading transformers-4.39.3-py3-none-any.whl.metadata (134 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.8/134.8 kB 28.3 MB/s eta 0:00:00
+Collecting peft<=0.13.2,>=0.7.1 (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for peft<=0.13.2,>=0.7.1 from https://files.pythonhosted.org/packages/78/9d/5f95bfb298c8d3b4e3a107701f9a4e7774a0d4d1f8eb0c9d5420b80f7c9d/peft-0.13.2-py3-none-any.whl.metadata
+  Downloading peft-0.13.2-py3-none-any.whl.metadata (13 kB)
+Collecting bitsandbytes>=0.39.0 (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for bitsandbytes>=0.39.0 from https://files.pythonhosted.org/packages/07/b7/cb5ce4d1a382cf53c19ef06c5fc29e85f5e129b4da6527dd207d90a5b8ad/bitsandbytes-0.45.5-py3-none-manylinux_2_24_x86_64.whl.metadata
+  Downloading bitsandbytes-0.45.5-py3-none-manylinux_2_24_x86_64.whl.metadata (5.0 kB)
+Collecting rpyc==6.0.0 (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for rpyc==6.0.0 from https://files.pythonhosted.org/packages/f6/e7/38cd5f2d8ab0d259648f6672fd19de30688a22ae769f87616c6a2fe92581/rpyc-6.0.0-py3-none-any.whl.metadata
+  Downloading rpyc-6.0.0-py3-none-any.whl.metadata (3.5 kB)
+Collecting fastapi (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for fastapi from https://files.pythonhosted.org/packages/50/b3/b51f09c2ba432a576fe63758bddc81f78f0c6309d9e5c10d194313bf021e/fastapi-0.115.12-py3-none-any.whl.metadata
+  Downloading fastapi-0.115.12-py3-none-any.whl.metadata (27 kB)
+Collecting uvicorn==0.29.0 (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for uvicorn==0.29.0 from https://files.pythonhosted.org/packages/73/f5/cbb16fcbe277c1e0b8b3ddd188f2df0e0947f545c49119b589643632d156/uvicorn-0.29.0-py3-none-any.whl.metadata
+  Downloading uvicorn-0.29.0-py3-none-any.whl.metadata (6.3 kB)
+Collecting galore_torch (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for galore_torch from https://files.pythonhosted.org/packages/2b/b9/e9e88f989c62edefaa45df07198ce280ac0d373f5e2842686c6ece2ddb1e/galore_torch-1.0-py3-none-any.whl.metadata
+  Downloading galore_torch-1.0-py3-none-any.whl.metadata (355 bytes)
+Collecting diffusers==0.29.0 (from colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for diffusers==0.29.0 from https://files.pythonhosted.org/packages/d5/68/a84d929518c9fbd65febcedd7810203bcac393f9cddd0603ec58df7f93f7/diffusers-0.29.0-py3-none-any.whl.metadata
+  Downloading diffusers-0.29.0-py3-none-any.whl.metadata (19 kB)
+Requirement already satisfied: importlib-metadata in /home/pnair/.local/lib/python3.11/site-packages (from diffusers==0.29.0->colossalai>=0.4.4->opensora==2.0.0) (7.0.1)
+Requirement already satisfied: regex!=2019.12.17 in /home/pnair/.local/lib/python3.11/site-packages (from diffusers==0.29.0->colossalai>=0.4.4->opensora==2.0.0) (2023.12.25)
+Requirement already satisfied: requests in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from diffusers==0.29.0->colossalai>=0.4.4->opensora==2.0.0) (2.31.0)
+Collecting plumbum (from rpyc==6.0.0->colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for plumbum from https://files.pythonhosted.org/packages/4f/9d/d03542c93bb3d448406731b80f39c3d5601282f778328c22c77d270f4ed4/plumbum-1.9.0-py3-none-any.whl.metadata
+  Downloading plumbum-1.9.0-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: tokenizers<0.19,>=0.14 in /home/pnair/.local/lib/python3.11/site-packages (from transformers==4.39.3->colossalai>=0.4.4->opensora==2.0.0) (0.15.0)
+Collecting h11>=0.8 (from uvicorn==0.29.0->colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for h11>=0.8 from https://files.pythonhosted.org/packages/95/04/ff642e65ad6b90db43e668d70ffb6736436c7ce41fcc549f4e9472234127/h11-0.14.0-py3-none-any.whl.metadata
+  Downloading h11-0.14.0-py3-none-any.whl.metadata (8.2 kB)
+Requirement already satisfied: wcwidth in /home/pnair/.local/lib/python3.11/site-packages (from ftfy>=6.2.0->opensora==2.0.0) (0.2.13)
+Requirement already satisfied: addict in /home/pnair/.local/lib/python3.11/site-packages (from mmengine>=0.10.3->opensora==2.0.0) (2.4.0)
+Requirement already satisfied: matplotlib in /home/pnair/.local/lib/python3.11/site-packages (from mmengine>=0.10.3->opensora==2.0.0) (3.8.2)
+Requirement already satisfied: termcolor in /home/pnair/.local/lib/python3.11/site-packages (from mmengine>=0.10.3->opensora==2.0.0) (2.4.0)
+Requirement already satisfied: yapf in /home/pnair/.local/lib/python3.11/site-packages (from mmengine>=0.10.3->opensora==2.0.0) (0.40.2)
+Requirement already satisfied: opencv-python>=3 in /home/pnair/.local/lib/python3.11/site-packages (from mmengine>=0.10.3->opensora==2.0.0) (4.9.0.80)
+Collecting antlr4-python3-runtime==4.9.* (from omegaconf>=2.3.0->opensora==2.0.0)
+  Downloading antlr4-python3-runtime-4.9.3.tar.gz (117 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 117.0/117.0 kB 28.7 MB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Running command python setup.py egg_info
+  running egg_info
+  creating /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info
+  writing /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info/PKG-INFO
+  writing dependency_links to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info/dependency_links.txt
+  writing requirements to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info/requires.txt
+  writing top-level names to /gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info/top_level.txt
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info/SOURCES.txt'
+  reading manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info/SOURCES.txt'
+  reading manifest template 'MANIFEST.in'
+  warning: no files found matching '*.py' under directory 'test'
+  warning: no files found matching '*.c' under directory 'test'
+  writing manifest file '/gpfs/scratch1/nodespecific/gcn144/pnair.11321865/pip-pip-egg-info-46zzf4bf/antlr4_python3_runtime.egg-info/SOURCES.txt'
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: anyio<5,>=3.5.0 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from openai>=1.52.2->opensora==2.0.0) (3.5.0)
+Collecting distro<2,>=1.7.0 (from openai>=1.52.2->opensora==2.0.0)
+  Obtaining dependency information for distro<2,>=1.7.0 from https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl.metadata
+  Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+Collecting httpx<1,>=0.23.0 (from openai>=1.52.2->opensora==2.0.0)
+  Obtaining dependency information for httpx<1,>=0.23.0 from https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl.metadata
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting jiter<1,>=0.4.0 (from openai>=1.52.2->opensora==2.0.0)
+  Obtaining dependency information for jiter<1,>=0.4.0 from https://files.pythonhosted.org/packages/be/bd/976b458add04271ebb5a255e992bd008546ea04bb4dcadc042a16279b4b4/jiter-0.9.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+  Downloading jiter-0.9.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.2 kB)
+Requirement already satisfied: sniffio in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from openai>=1.52.2->opensora==2.0.0) (1.2.0)
+Collecting typing-extensions>=4.8.0 (from torch==2.4.0->opensora==2.0.0)
+  Obtaining dependency information for typing-extensions>=4.8.0 from https://files.pythonhosted.org/packages/8b/54/b1ae86c0973cc6f0210b53d508ca3641fb6d0c56823f288d108bc7ab3cc8/typing_extensions-4.13.2-py3-none-any.whl.metadata
+  Downloading typing_extensions-4.13.2-py3-none-any.whl.metadata (3.0 kB)
+Requirement already satisfied: dill>=0.3.1 in /home/pnair/.local/lib/python3.11/site-packages (from pandarallel>=1.6.5->opensora==2.0.0) (0.3.7)
+Requirement already satisfied: python-dateutil>=2.8.2 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from pandas>=2.0.3->opensora==2.0.0) (2.8.2)
+Requirement already satisfied: pytz>=2020.1 in /home/pnair/.local/lib/python3.11/site-packages (from pandas>=2.0.3->opensora==2.0.0) (2023.3.post1)
+Requirement already satisfied: tzdata>=2022.1 in /home/pnair/.local/lib/python3.11/site-packages (from pandas>=2.0.3->opensora==2.0.0) (2023.4)
+Collecting cfgv>=2.0.0 (from pre-commit>=3.5.0->opensora==2.0.0)
+  Obtaining dependency information for cfgv>=2.0.0 from https://files.pythonhosted.org/packages/c5/55/51844dd50c4fc7a33b653bfaba4c2456f06955289ca770a5dbd5fd267374/cfgv-3.4.0-py2.py3-none-any.whl.metadata
+  Downloading cfgv-3.4.0-py2.py3-none-any.whl.metadata (8.5 kB)
+Collecting identify>=1.0.0 (from pre-commit>=3.5.0->opensora==2.0.0)
+  Obtaining dependency information for identify>=1.0.0 from https://files.pythonhosted.org/packages/2b/d3/85feeba1d097b81a44bcffa6a0beab7b4dfffe78e82fc54978d3ac380736/identify-2.6.10-py2.py3-none-any.whl.metadata
+  Downloading identify-2.6.10-py2.py3-none-any.whl.metadata (4.4 kB)
+Collecting nodeenv>=0.11.1 (from pre-commit>=3.5.0->opensora==2.0.0)
+  Obtaining dependency information for nodeenv>=0.11.1 from https://files.pythonhosted.org/packages/d2/1d/1b658dbd2b9fa9c4c9f32accbfc0205d532c8c6194dc0f2a4c0428e7128a/nodeenv-1.9.1-py2.py3-none-any.whl.metadata
+  Downloading nodeenv-1.9.1-py2.py3-none-any.whl.metadata (21 kB)
+Collecting virtualenv>=20.10.0 (from pre-commit>=3.5.0->opensora==2.0.0)
+  Obtaining dependency information for virtualenv>=20.10.0 from https://files.pythonhosted.org/packages/4c/ed/3cfeb48175f0671ec430ede81f628f9fb2b1084c9064ca67ebe8c0ed6a05/virtualenv-20.30.0-py3-none-any.whl.metadata
+  Downloading virtualenv-20.30.0-py3-none-any.whl.metadata (4.5 kB)
+Requirement already satisfied: absl-py>=0.4 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (2.1.0)
+Requirement already satisfied: grpcio>=1.48.2 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (1.62.0)
+Requirement already satisfied: google-auth<3,>=1.6.3 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (2.28.1)
+Requirement already satisfied: google-auth-oauthlib<2,>=0.5 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (1.2.0)
+Requirement already satisfied: markdown>=2.6.8 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (3.5.2)
+Requirement already satisfied: setuptools>=41.0.0 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (69.0.3)
+Requirement already satisfied: six>1.9 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (1.16.0)
+Requirement already satisfied: tensorboard-data-server<0.8.0,>=0.7.0 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (0.7.2)
+Requirement already satisfied: werkzeug>=1.0.1 in /home/pnair/.local/lib/python3.11/site-packages (from tensorboard>=2.14.0->opensora==2.0.0) (3.0.1)
+Requirement already satisfied: docker-pycreds>=0.4.0 in /home/pnair/.local/lib/python3.11/site-packages (from wandb>=0.17.0->opensora==2.0.0) (0.4.0)
+Requirement already satisfied: gitpython!=3.1.29,>=1.0.0 in /home/pnair/.local/lib/python3.11/site-packages (from wandb>=0.17.0->opensora==2.0.0) (3.1.40)
+Requirement already satisfied: platformdirs in /home/pnair/.local/lib/python3.11/site-packages (from wandb>=0.17.0->opensora==2.0.0) (4.2.0)
+Collecting sentry-sdk>=2.0.0 (from wandb>=0.17.0->opensora==2.0.0)
+  Obtaining dependency information for sentry-sdk>=2.0.0 from https://files.pythonhosted.org/packages/23/32/0a30b4fafdb3d26d133f99bb566aaa6000004ee7f2c4b72aafea9237ab7e/sentry_sdk-2.26.1-py2.py3-none-any.whl.metadata
+  Downloading sentry_sdk-2.26.1-py2.py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: setproctitle in /home/pnair/.local/lib/python3.11/site-packages (from wandb>=0.17.0->opensora==2.0.0) (1.3.3)
+Requirement already satisfied: idna>=2.8 in /home/pnair/.local/lib/python3.11/site-packages (from anyio<5,>=3.5.0->openai>=1.52.2->opensora==2.0.0) (3.6)
+Requirement already satisfied: gitdb<5,>=4.0.1 in /home/pnair/.local/lib/python3.11/site-packages (from gitpython!=3.1.29,>=1.0.0->wandb>=0.17.0->opensora==2.0.0) (4.0.11)
+Requirement already satisfied: cachetools<6.0,>=2.0.0 in /home/pnair/.local/lib/python3.11/site-packages (from google-auth<3,>=1.6.3->tensorboard>=2.14.0->opensora==2.0.0) (5.3.2)
+Requirement already satisfied: pyasn1-modules>=0.2.1 in /home/pnair/.local/lib/python3.11/site-packages (from google-auth<3,>=1.6.3->tensorboard>=2.14.0->opensora==2.0.0) (0.3.0)
+Requirement already satisfied: rsa<5,>=3.1.4 in /home/pnair/.local/lib/python3.11/site-packages (from google-auth<3,>=1.6.3->tensorboard>=2.14.0->opensora==2.0.0) (4.9)
+Requirement already satisfied: requests-oauthlib>=0.7.0 in /home/pnair/.local/lib/python3.11/site-packages (from google-auth-oauthlib<2,>=0.5->tensorboard>=2.14.0->opensora==2.0.0) (1.3.1)
+Requirement already satisfied: certifi in /home/pnair/.local/lib/python3.11/site-packages (from httpx<1,>=0.23.0->openai>=1.52.2->opensora==2.0.0) (2023.11.17)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->openai>=1.52.2->opensora==2.0.0)
+  Obtaining dependency information for httpcore==1.* from https://files.pythonhosted.org/packages/18/8d/f052b1e336bb2c1fc7ed1aaed898aa570c0b61a09707b108979d9fc6e308/httpcore-1.0.8-py3-none-any.whl.metadata
+  Downloading httpcore-1.0.8-py3-none-any.whl.metadata (21 kB)
+Requirement already satisfied: annotated-types>=0.4.0 in /home/pnair/.local/lib/python3.11/site-packages (from pydantic->colossalai>=0.4.4->opensora==2.0.0) (0.6.0)
+Requirement already satisfied: pydantic-core==2.14.6 in /home/pnair/.local/lib/python3.11/site-packages (from pydantic->colossalai>=0.4.4->opensora==2.0.0) (2.14.6)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/pnair/.local/lib/python3.11/site-packages (from requests->diffusers==0.29.0->colossalai>=0.4.4->opensora==2.0.0) (3.3.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /home/pnair/.local/lib/python3.11/site-packages (from requests->diffusers==0.29.0->colossalai>=0.4.4->opensora==2.0.0) (2.1.0)
+Collecting distlib<1,>=0.3.7 (from virtualenv>=20.10.0->pre-commit>=3.5.0->opensora==2.0.0)
+  Obtaining dependency information for distlib<1,>=0.3.7 from https://files.pythonhosted.org/packages/91/a1/cf2472db20f7ce4a6be1253a81cfdf85ad9c7885ffbed7047fb72c24cf87/distlib-0.3.9-py2.py3-none-any.whl.metadata
+  Downloading distlib-0.3.9-py2.py3-none-any.whl.metadata (5.2 kB)
+Requirement already satisfied: MarkupSafe>=2.1.1 in /home/pnair/.local/lib/python3.11/site-packages (from werkzeug>=1.0.1->tensorboard>=2.14.0->opensora==2.0.0) (2.1.3)
+Collecting invoke>=2.0 (from fabric->colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for invoke>=2.0 from https://files.pythonhosted.org/packages/0a/66/7f8c48009c72d73bc6bbe6eb87ac838d6a526146f7dab14af671121eb379/invoke-2.2.0-py3-none-any.whl.metadata
+  Downloading invoke-2.2.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting paramiko>=2.4 (from fabric->colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for paramiko>=2.4 from https://files.pythonhosted.org/packages/15/f8/c7bd0ef12954a81a1d3cea60a13946bd9a49a0036a5927770c461eade7ae/paramiko-3.5.1-py3-none-any.whl.metadata
+  Downloading paramiko-3.5.1-py3-none-any.whl.metadata (4.6 kB)
+Requirement already satisfied: decorator>=5 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from fabric->colossalai>=0.4.4->opensora==2.0.0) (5.1.1)
+Collecting deprecated>=1.2 (from fabric->colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for deprecated>=1.2 from https://files.pythonhosted.org/packages/6e/c6/ac0b6c1e2d138f1002bcf799d330bd6d85084fece321e662a14223794041/Deprecated-1.2.18-py2.py3-none-any.whl.metadata
+  Downloading Deprecated-1.2.18-py2.py3-none-any.whl.metadata (5.7 kB)
+Collecting starlette<0.47.0,>=0.40.0 (from fastapi->colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for starlette<0.47.0,>=0.40.0 from https://files.pythonhosted.org/packages/8b/0c/9d30a4ebeb6db2b25a841afbb80f6ef9a854fc3b41be131d249a977b4959/starlette-0.46.2-py3-none-any.whl.metadata
+  Downloading starlette-0.46.2-py3-none-any.whl.metadata (6.2 kB)
+Requirement already satisfied: beautifulsoup4 in /home/pnair/.local/lib/python3.11/site-packages (from google->colossalai>=0.4.4->opensora==2.0.0) (4.12.3)
+Requirement already satisfied: contourpy>=1.0.1 in /home/pnair/.local/lib/python3.11/site-packages (from matplotlib->mmengine>=0.10.3->opensora==2.0.0) (1.2.0)
+Requirement already satisfied: cycler>=0.10 in /home/pnair/.local/lib/python3.11/site-packages (from matplotlib->mmengine>=0.10.3->opensora==2.0.0) (0.12.1)
+Requirement already satisfied: fonttools>=4.22.0 in /home/pnair/.local/lib/python3.11/site-packages (from matplotlib->mmengine>=0.10.3->opensora==2.0.0) (4.47.2)
+Requirement already satisfied: kiwisolver>=1.3.1 in /home/pnair/.local/lib/python3.11/site-packages (from matplotlib->mmengine>=0.10.3->opensora==2.0.0) (1.4.5)
+Requirement already satisfied: pyparsing>=2.3.1 in /home/pnair/.local/lib/python3.11/site-packages (from matplotlib->mmengine>=0.10.3->opensora==2.0.0) (3.1.1)
+Requirement already satisfied: jsonschema in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from ray->colossalai>=0.4.4->opensora==2.0.0) (4.17.3)
+Requirement already satisfied: msgpack<2.0.0,>=1.0.0 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from ray->colossalai>=0.4.4->opensora==2.0.0) (1.0.3)
+Requirement already satisfied: aiosignal in /home/pnair/.local/lib/python3.11/site-packages (from ray->colossalai>=0.4.4->opensora==2.0.0) (1.3.1)
+Requirement already satisfied: frozenlist in /home/pnair/.local/lib/python3.11/site-packages (from ray->colossalai>=0.4.4->opensora==2.0.0) (1.4.1)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /home/pnair/.local/lib/python3.11/site-packages (from rich->colossalai>=0.4.4->opensora==2.0.0) (3.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/pnair/.local/lib/python3.11/site-packages (from rich->colossalai>=0.4.4->opensora==2.0.0) (2.17.2)
+Requirement already satisfied: mpmath>=0.19 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from sympy->torch==2.4.0->opensora==2.0.0) (1.3.0)
+Requirement already satisfied: tomli>=2.0.1 in /home/pnair/.local/lib/python3.11/site-packages (from yapf->mmengine>=0.10.3->opensora==2.0.0) (2.0.1)
+Requirement already satisfied: wrapt<2,>=1.10 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from deprecated>=1.2->fabric->colossalai>=0.4.4->opensora==2.0.0) (1.14.1)
+Requirement already satisfied: smmap<6,>=3.0.1 in /home/pnair/.local/lib/python3.11/site-packages (from gitdb<5,>=4.0.1->gitpython!=3.1.29,>=1.0.0->wandb>=0.17.0->opensora==2.0.0) (5.0.1)
+Requirement already satisfied: zipp>=0.5 in /home/pnair/.local/lib/python3.11/site-packages (from importlib-metadata->diffusers==0.29.0->colossalai>=0.4.4->opensora==2.0.0) (3.17.0)
+Requirement already satisfied: mdurl~=0.1 in /home/pnair/.local/lib/python3.11/site-packages (from markdown-it-py>=2.2.0->rich->colossalai>=0.4.4->opensora==2.0.0) (0.1.2)
+Requirement already satisfied: bcrypt>=3.2 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from paramiko>=2.4->fabric->colossalai>=0.4.4->opensora==2.0.0) (3.2.0)
+Requirement already satisfied: cryptography>=3.3 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from paramiko>=2.4->fabric->colossalai>=0.4.4->opensora==2.0.0) (41.0.2)
+Collecting pynacl>=1.5 (from paramiko>=2.4->fabric->colossalai>=0.4.4->opensora==2.0.0)
+  Obtaining dependency information for pynacl>=1.5 from https://files.pythonhosted.org/packages/ee/87/f1bb6a595f14a327e8285b9eb54d41fef76c585a0edef0a45f6fc95de125/PyNaCl-1.5.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl.metadata
+  Downloading PyNaCl-1.5.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl.metadata (8.6 kB)
+Requirement already satisfied: pyasn1<0.6.0,>=0.4.6 in /home/pnair/.local/lib/python3.11/site-packages (from pyasn1-modules>=0.2.1->google-auth<3,>=1.6.3->tensorboard>=2.14.0->opensora==2.0.0) (0.5.1)
+Requirement already satisfied: oauthlib>=3.0.0 in /home/pnair/.local/lib/python3.11/site-packages (from requests-oauthlib>=0.7.0->google-auth-oauthlib<2,>=0.5->tensorboard>=2.14.0->opensora==2.0.0) (3.2.2)
+Collecting anyio<5,>=3.5.0 (from openai>=1.52.2->opensora==2.0.0)
+  Obtaining dependency information for anyio<5,>=3.5.0 from https://files.pythonhosted.org/packages/a1/ee/48ca1a7c89ffec8b6a0c5d02b89c305671d5ffd8d3c94acf8b8c408575bb/anyio-4.9.0-py3-none-any.whl.metadata
+  Downloading anyio-4.9.0-py3-none-any.whl.metadata (4.7 kB)
+Requirement already satisfied: soupsieve>1.2 in /home/pnair/.local/lib/python3.11/site-packages (from beautifulsoup4->google->colossalai>=0.4.4->opensora==2.0.0) (2.5)
+Requirement already satisfied: attrs>=17.4.0 in /home/pnair/.local/lib/python3.11/site-packages (from jsonschema->ray->colossalai>=0.4.4->opensora==2.0.0) (23.2.0)
+Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from jsonschema->ray->colossalai>=0.4.4->opensora==2.0.0) (0.18.0)
+Requirement already satisfied: cffi>=1.1 in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from bcrypt>=3.2->paramiko>=2.4->fabric->colossalai>=0.4.4->opensora==2.0.0) (1.15.1)
+Requirement already satisfied: pycparser in /sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/lib/python3.11/site-packages (from cffi>=1.1->bcrypt>=3.2->paramiko>=2.4->fabric->colossalai>=0.4.4->opensora==2.0.0) (2.21)
+Downloading av-13.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.0/34.0 MB 33.1 MB/s eta 0:00:00
+Downloading liger_kernel-0.5.2-py3-none-any.whl (104 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 104.2/104.2 kB 24.7 MB/s eta 0:00:00
+Downloading torch-2.4.0-cp311-cp311-manylinux1_x86_64.whl (797.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 797.3/797.3 MB 3.4 MB/s eta 0:00:00
+Downloading torchvision-0.19.0-cp311-cp311-manylinux1_x86_64.whl (7.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 132.1 MB/s eta 0:00:00
+Downloading nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl (664.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 664.8/664.8 MB 2.0 MB/s eta 0:00:00
+Downloading nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl (176.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 176.2/176.2 MB 6.2 MB/s eta 0:00:00
+Downloading triton-3.0.0-1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (209.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 209.4/209.4 MB 19.5 MB/s eta 0:00:00
+Downloading accelerate-1.6.0-py3-none-any.whl (354 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 354.7/354.7 kB 79.6 MB/s eta 0:00:00
+Downloading diffusers-0.29.0-py3-none-any.whl (2.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 149.5 MB/s eta 0:00:00
+Downloading rpyc-6.0.0-py3-none-any.whl (74 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.5/74.5 kB 22.9 MB/s eta 0:00:00
+Downloading transformers-4.39.3-py3-none-any.whl (8.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.8/8.8 MB 139.8 MB/s eta 0:00:00
+Downloading uvicorn-0.29.0-py3-none-any.whl (60 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.8/60.8 kB 19.0 MB/s eta 0:00:00
+Using cached ftfy-6.3.1-py3-none-any.whl (44 kB)
+Downloading mmengine-0.10.7-py3-none-any.whl (452 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 452.7/452.7 kB 85.2 MB/s eta 0:00:00
+Downloading omegaconf-2.3.0-py3-none-any.whl (79 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 79.5/79.5 kB 26.6 MB/s eta 0:00:00
+Downloading openai-1.75.0-py3-none-any.whl (646 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 647.0/647.0 kB 114.1 MB/s eta 0:00:00
+Downloading pre_commit-4.2.0-py2.py3-none-any.whl (220 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 220.7/220.7 kB 61.7 MB/s eta 0:00:00
+Downloading wandb-0.19.9-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (20.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20.9/20.9 MB 34.1 MB/s eta 0:00:00
+Downloading bitsandbytes-0.45.5-py3-none-manylinux_2_24_x86_64.whl (76.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 76.1/76.1 MB 28.0 MB/s eta 0:00:00
+Downloading cfgv-3.4.0-py2.py3-none-any.whl (7.2 kB)
+Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.5/73.5 kB 23.0 MB/s eta 0:00:00
+Downloading httpcore-1.0.8-py3-none-any.whl (78 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.7/78.7 kB 25.4 MB/s eta 0:00:00
+Downloading huggingface_hub-0.30.2-py3-none-any.whl (481 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 481.4/481.4 kB 97.5 MB/s eta 0:00:00
+Downloading identify-2.6.10-py2.py3-none-any.whl (99 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 99.1/99.1 kB 34.0 MB/s eta 0:00:00
+Downloading jiter-0.9.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (351 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 351.8/351.8 kB 78.6 MB/s eta 0:00:00
+Downloading nodeenv-1.9.1-py2.py3-none-any.whl (22 kB)
+Downloading peft-0.13.2-py3-none-any.whl (320 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 320.7/320.7 kB 75.9 MB/s eta 0:00:00
+Downloading safetensors-0.5.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (471 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 471.6/471.6 kB 100.5 MB/s eta 0:00:00
+Downloading sentry_sdk-2.26.1-py2.py3-none-any.whl (340 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 340.6/340.6 kB 81.3 MB/s eta 0:00:00
+Downloading typing_extensions-4.13.2-py3-none-any.whl (45 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.8/45.8 kB 12.9 MB/s eta 0:00:00
+Downloading virtualenv-20.30.0-py3-none-any.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 197.3 MB/s eta 0:00:00
+Downloading fabric-3.2.2-py3-none-any.whl (59 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.4/59.4 kB 16.9 MB/s eta 0:00:00
+Downloading fastapi-0.115.12-py3-none-any.whl (95 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 95.2/95.2 kB 28.3 MB/s eta 0:00:00
+Downloading galore_torch-1.0-py3-none-any.whl (13 kB)
+Downloading google-3.0.0-py2.py3-none-any.whl (45 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.3/45.3 kB 14.2 MB/s eta 0:00:00
+Downloading ninja-1.11.1.4-py3-none-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (422 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 422.8/422.8 kB 83.5 MB/s eta 0:00:00
+Downloading ray-2.44.1-cp311-cp311-manylinux2014_x86_64.whl (68.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 68.1/68.1 MB 48.0 MB/s eta 0:00:00
+Downloading sentencepiece-0.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 119.7 MB/s eta 0:00:00
+Downloading Deprecated-1.2.18-py2.py3-none-any.whl (10.0 kB)
+Downloading distlib-0.3.9-py2.py3-none-any.whl (468 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 469.0/469.0 kB 94.2 MB/s eta 0:00:00
+Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 16.5 MB/s eta 0:00:00
+Downloading invoke-2.2.0-py3-none-any.whl (160 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 160.3/160.3 kB 51.7 MB/s eta 0:00:00
+Downloading paramiko-3.5.1-py3-none-any.whl (227 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 227.3/227.3 kB 56.0 MB/s eta 0:00:00
+Downloading starlette-0.46.2-py3-none-any.whl (72 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.0/72.0 kB 22.5 MB/s eta 0:00:00
+Downloading anyio-4.9.0-py3-none-any.whl (100 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100.9/100.9 kB 28.4 MB/s eta 0:00:00
+Downloading plumbum-1.9.0-py3-none-any.whl (127 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 128.0/128.0 kB 41.1 MB/s eta 0:00:00
+Downloading PyNaCl-1.5.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl (856 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 856.7/856.7 kB 139.7 MB/s eta 0:00:00
+Building wheels for collected packages: opensora, colossalai, antlr4-python3-runtime, pandarallel, contexttimer
+  Building wheel for opensora (setup.py): started
+  Running command python setup.py bdist_wheel
+  running bdist_wheel
+  running build
+  running build_py
+  copying opensora/__init__.py -> build/lib/opensora
+  copying opensora/registry.py -> build/lib/opensora
+  copying opensora/datasets/parallel.py -> build/lib/opensora/datasets
+  copying opensora/datasets/pin_memory_cache.py -> build/lib/opensora/datasets
+  copying opensora/datasets/bucket.py -> build/lib/opensora/datasets
+  copying opensora/datasets/dataloader.py -> build/lib/opensora/datasets
+  copying opensora/datasets/__init__.py -> build/lib/opensora/datasets
+  copying opensora/datasets/utils.py -> build/lib/opensora/datasets
+  copying opensora/datasets/read_video.py -> build/lib/opensora/datasets
+  copying opensora/datasets/datasets.py -> build/lib/opensora/datasets
+  copying opensora/datasets/sampler.py -> build/lib/opensora/datasets
+  copying opensora/datasets/video_transforms.py -> build/lib/opensora/datasets
+  copying opensora/datasets/aspect.py -> build/lib/opensora/datasets
+  copying opensora/utils/prompt_refine.py -> build/lib/opensora/utils
+  copying opensora/utils/__init__.py -> build/lib/opensora/utils
+  copying opensora/utils/optimizer.py -> build/lib/opensora/utils
+  copying opensora/utils/inference.py -> build/lib/opensora/utils
+  copying opensora/utils/cai.py -> build/lib/opensora/utils
+  copying opensora/utils/ckpt.py -> build/lib/opensora/utils
+  copying opensora/utils/misc.py -> build/lib/opensora/utils
+  copying opensora/utils/train.py -> build/lib/opensora/utils
+  copying opensora/utils/config.py -> build/lib/opensora/utils
+  copying opensora/utils/logger.py -> build/lib/opensora/utils
+  copying opensora/utils/sampling.py -> build/lib/opensora/utils
+  copying opensora/models/__init__.py -> build/lib/opensora/models
+  copying opensora/acceleration/communications.py -> build/lib/opensora/acceleration
+  copying opensora/acceleration/__init__.py -> build/lib/opensora/acceleration
+  copying opensora/acceleration/checkpoint.py -> build/lib/opensora/acceleration
+  copying opensora/acceleration/parallel_states.py -> build/lib/opensora/acceleration
+  copying opensora/models/vae/tensor_parallel.py -> build/lib/opensora/models/vae
+  copying opensora/models/vae/__init__.py -> build/lib/opensora/models/vae
+  copying opensora/models/vae/utils.py -> build/lib/opensora/models/vae
+  copying opensora/models/vae/autoencoder_2d.py -> build/lib/opensora/models/vae
+  copying opensora/models/vae/lpips.py -> build/lib/opensora/models/vae
+  copying opensora/models/vae/losses.py -> build/lib/opensora/models/vae
+  copying opensora/models/vae/discriminator.py -> build/lib/opensora/models/vae
+  copying opensora/models/text/conditioner.py -> build/lib/opensora/models/text
+  copying opensora/models/text/__init__.py -> build/lib/opensora/models/text
+  copying opensora/models/hunyuan_vae/unet_causal_3d_blocks.py -> build/lib/opensora/models/hunyuan_vae
+  copying opensora/models/hunyuan_vae/vae.py -> build/lib/opensora/models/hunyuan_vae
+  copying opensora/models/hunyuan_vae/autoencoder_kl_causal_3d.py -> build/lib/opensora/models/hunyuan_vae
+  copying opensora/models/hunyuan_vae/__init__.py -> build/lib/opensora/models/hunyuan_vae
+  copying opensora/models/hunyuan_vae/distributed.py -> build/lib/opensora/models/hunyuan_vae
+  copying opensora/models/hunyuan_vae/policy.py -> build/lib/opensora/models/hunyuan_vae
+  copying opensora/models/mmdit/model.py -> build/lib/opensora/models/mmdit
+  copying opensora/models/mmdit/__init__.py -> build/lib/opensora/models/mmdit
+  copying opensora/models/mmdit/math.py -> build/lib/opensora/models/mmdit
+  copying opensora/models/mmdit/layers.py -> build/lib/opensora/models/mmdit
+  copying opensora/models/mmdit/distributed.py -> build/lib/opensora/models/mmdit
+  copying opensora/models/mmdit/policy.py -> build/lib/opensora/models/mmdit
+slurmstepd: error: *** JOB 11321865 ON gcn144 CANCELLED AT 2025-04-22T16:47:57 ***
+  copying opensora/models/dc_ae/ae_model_zoo.py -> build/lib/opensora/models/dc_ae
+  copying opensora/models/dc_ae/__init__.py -> build/lib/opensora/models/dc_ae
+  copying opensora/models/dc_ae/utils/list.py -> build/lib/opensora/models/dc_ae/utils
+
+JOB STATISTICS
+==============
+Job ID: 11321865
+Cluster: snellius
+User/Group: pnair/pnair
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.14% of 00:12:00 core-walltime
+Job Wall-clock time: 00:00:45
+Memory Utilized: 222.23 MB
+Memory Efficiency: 0.12% of 180.00 GB (180.00 GB/node)

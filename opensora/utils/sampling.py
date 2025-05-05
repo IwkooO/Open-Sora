@@ -11,6 +11,7 @@ from peft import PeftModel
 from torch import Tensor, nn
 
 from opensora.datasets.aspect import get_image_size
+from opensora.datasets.utils import read_from_path
 from opensora.models.mmdit.model import MMDiTModel
 from opensora.models.text.conditioner import HFEmbedder
 from opensora.registry import MODELS, build_module
@@ -77,6 +78,12 @@ class SamplingOption:
 
     # flow shift
     flow_shift: float | None = None
+
+    # Reference image guidance scale
+    ref_guidance_scale: float | None = None
+
+    # Reference image path
+    ref_image: str | None = None
 
 
 def sanitize_sampling_option(sampling_option: SamplingOption) -> SamplingOption:
@@ -281,9 +288,110 @@ class DistilledDenoiser(Denoiser):
         return text, {}
 
 
+class PersonalizedDenoiser(Denoiser):
+    def denoise(self, model: MMDiTModel, **kwargs) -> Tensor:
+        img = kwargs.pop("img")
+        timesteps = kwargs.pop("timesteps")
+        guidance = kwargs.pop("guidance")
+        guidance_img = kwargs.pop("guidance_img")
+        ref_guidance_scale = kwargs.pop("ref_guidance_scale", None)
+        z_ref = kwargs.pop("z_ref", None)
+        sigma_min = kwargs.pop("sigma_min", 1e-5)
+
+        # cond ref arguments
+        masks = kwargs.pop("masks", None)
+        masked_ref = kwargs.pop("masked_ref", None)
+
+        # oscillation guidance
+        text_osci = kwargs.pop("text_osci", False)
+        image_osci = kwargs.pop("image_osci", False)
+        scale_temporal_osci = kwargs.pop("scale_temporal_osci", False)
+
+        # patch size
+        patch_size = kwargs.pop("patch_size", 2)
+
+        guidance_vec = torch.full(
+            (img.shape[0],), guidance, device=img.device, dtype=img.dtype
+        )
+        for i, (t_curr, t_prev) in enumerate(zip(timesteps[:-1], timesteps[1:])):
+            # timesteps
+            t_vec = torch.full(
+                (img.shape[0],), t_curr, dtype=img.dtype, device=img.device
+            )
+
+            # Prepare condition if using I2V
+            if masked_ref is not None:
+                b, c, t, w, h = masked_ref.size()
+                cond = torch.cat((masks, masked_ref), dim=1)
+                cond = pack(cond, patch_size=patch_size)
+                kwargs["cond"] = torch.cat([cond, cond, torch.zeros_like(cond)], dim=0)
+
+            # forward preparation
+            cond_x = img[: len(img) // 3]
+            img = torch.cat([cond_x, cond_x, cond_x], dim=0)
+
+            # forward
+            pred = model(
+                img=img,
+                **kwargs,
+                timesteps=t_vec,
+                guidance=guidance_vec,
+            )
+
+            # prepare guidance
+            text_gs = get_oscillation_gs(guidance, i) if text_osci else guidance
+            image_gs = (
+                get_oscillation_gs(guidance_img, i) if image_osci else guidance_img
+            )
+            cond, uncond, uncond_2 = pred.chunk(3, dim=0)
+
+            # Apply CFG
+            pred_cfg = uncond_2 + image_gs * (uncond - uncond_2) + text_gs * (cond - uncond)
+
+            # Apply reference guidance if enabled
+            if ref_guidance_scale is not None and z_ref is not None:
+                # Generate noise for reference
+                noise_for_ref = torch.randn_like(z_ref)
+                # Calculate noisy reference target
+                noisy_z_ref_target = (1 - (1 - sigma_min) * t_curr) * z_ref + t_curr * noise_for_ref
+                # Calculate guidance gradient
+                guidance_grad = noisy_z_ref_target - img[:len(img)//3]
+                # Apply guidance
+                pred_cfg = pred_cfg + ref_guidance_scale * guidance_grad
+
+            pred = torch.cat([pred_cfg, pred_cfg, pred_cfg], dim=0)
+
+            # update
+            img = img + (t_prev - t_curr) * pred
+
+        img = img[: len(img) // 3]
+        return img
+
+    def prepare_guidance(
+        self,
+        text: list[str],
+        optional_models: dict[str, nn.Module],
+        device: torch.device,
+        dtype: torch.dtype,
+        **kwargs,
+    ) -> tuple[list[str], dict[str, Tensor]]:
+        ret = {}
+        neg = kwargs.get("neg", None)
+        ret["guidance_img"] = kwargs.pop("guidance_img")
+        ret["ref_guidance_scale"] = kwargs.pop("ref_guidance_scale", None)
+        ret["z_ref"] = kwargs.pop("z_ref", None)
+
+        # text
+        if neg is None:
+            neg = [""] * len(text)
+        text = text + neg + neg
+        return text, ret
+
+
 SamplingMethodDict = {
     SamplingMethod.I2V: I2VDenoiser(),
     SamplingMethod.DISTILLED: DistilledDenoiser(),
+    "personalized": PersonalizedDenoiser(),
 }
 
 
@@ -633,6 +741,17 @@ def prepare_api(
         )
         denoiser = SamplingMethodDict[opt.method]
 
+        # Handle reference image for personalized generation
+        z_ref = None
+        if opt.ref_image is not None:
+            # Load and preprocess reference image
+            ref_image = read_from_path(opt.ref_image, (opt.height, opt.width), transform_name="resize_crop")
+            ref_image = ref_image.unsqueeze(0).to(device, dtype)  # Add batch dimension
+            # Encode reference image
+            z_ref = model_ae.encode(ref_image)
+            # Repeat for batch size
+            z_ref = z_ref.repeat(len(text), 1, 1, 1, 1)
+
         # i2v reference conditions
         references = [None] * len(text)
         if cond_type != "t2v" and "ref" in kwargs:
@@ -667,6 +786,8 @@ def prepare_api(
             dtype=dtype,
             neg=neg,
             guidance_img=opt.guidance_img,
+            ref_guidance_scale=opt.ref_guidance_scale,
+            z_ref=z_ref,
         )
 
         inp = prepare(model_t5, model_clip, z, prompt=text, patch_size=patch_size)

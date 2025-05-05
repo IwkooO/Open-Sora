@@ -1,0 +1,95 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Requirement already satisfied: huggingface_hub[cli] in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (0.30.2)
+Requirement already satisfied: filelock in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from huggingface_hub[cli]) (3.18.0)
+Requirement already satisfied: fsspec>=2023.5.0 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from huggingface_hub[cli]) (2025.3.2)
+Requirement already satisfied: packaging>=20.9 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from huggingface_hub[cli]) (25.0)
+Requirement already satisfied: pyyaml>=5.1 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from huggingface_hub[cli]) (6.0.2)
+Requirement already satisfied: requests in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from huggingface_hub[cli]) (2.32.3)
+Requirement already satisfied: tqdm>=4.42.1 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from huggingface_hub[cli]) (4.67.1)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from huggingface_hub[cli]) (4.13.2)
+Collecting InquirerPy==0.3.4 (from huggingface_hub[cli])
+  Using cached InquirerPy-0.3.4-py3-none-any.whl.metadata (8.1 kB)
+Collecting pfzy<0.4.0,>=0.3.1 (from InquirerPy==0.3.4->huggingface_hub[cli])
+  Using cached pfzy-0.3.4-py3-none-any.whl.metadata (4.9 kB)
+Collecting prompt-toolkit<4.0.0,>=3.0.1 (from InquirerPy==0.3.4->huggingface_hub[cli])
+  Downloading prompt_toolkit-3.0.51-py3-none-any.whl.metadata (6.4 kB)
+Requirement already satisfied: charset-normalizer<4,>=2 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from requests->huggingface_hub[cli]) (3.4.1)
+Requirement already satisfied: idna<4,>=2.5 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from requests->huggingface_hub[cli]) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from requests->huggingface_hub[cli]) (2.4.0)
+Requirement already satisfied: certifi>=2017.4.17 in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from requests->huggingface_hub[cli]) (2025.1.31)
+Requirement already satisfied: wcwidth in /gpfs/home2/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages (from prompt-toolkit<4.0.0,>=3.0.1->InquirerPy==0.3.4->huggingface_hub[cli]) (0.2.13)
+Using cached InquirerPy-0.3.4-py3-none-any.whl (67 kB)
+Using cached pfzy-0.3.4-py3-none-any.whl (8.5 kB)
+Downloading prompt_toolkit-3.0.51-py3-none-any.whl (387 kB)
+Installing collected packages: prompt-toolkit, pfzy, InquirerPy
+Successfully installed InquirerPy-0.3.4 pfzy-0.3.4 prompt-toolkit-3.0.51
+Fetching 20 files:   0%|          | 0/20 [00:00<?, ?it/s]Downloading 'README.md' to 'ckpts/.cache/huggingface/download/Xn7B-BWUGOee2Y6hCZtEhtFu4BE=.5c86c85ca059eda525c9b790c76759bef02f5852.incomplete'
+Downloading 'flux1-dev-ae.safetensors' to 'ckpts/.cache/huggingface/download/XlHBzx1cBTf6jtAo8jOGge9DArE=.afc8e28272cd15db3919bacdb6918ce9c1ed22e96cb12c4d5ed0fba823529e38.incomplete'
+Downloading 'google/t5-v1_1-xxl/pytorch_model-00001-of-00002.bin' to 'ckpts/.cache/huggingface/download/google/t5-v1_1-xxl/fPHULxv55kAe7RSfHmmL42LIc1I=.2f71ad0624095dae788b1023081dda1b4040bd24f7244a5b5b46eebc09825839.incomplete'
+Downloading 'google/t5-v1_1-xxl/pytorch_model-00002-of-00002.bin' to 'ckpts/.cache/huggingface/download/google/t5-v1_1-xxl/HnkwBfZ0kY-ttHuN02vuxl1p6V0=.4f68f80678299ac59f69b3550ebd47b966571920d8f9e71f42ab61fabaaed868.incomplete'
+Downloading 'Open_Sora_v2.safetensors' to 'ckpts/.cache/huggingface/download/m_dUKjCj_K9ClSAdmz005lkSVr0=.d57baa23f6ad65829b93f58c6b8ff46f8b11bb1207cad1836c9d08e140ec9252.incomplete'
+Downloading '.gitattributes' to 'ckpts/.cache/huggingface/download/wPaCkH-WbT7GsmxMKKrNZTV4nSM=.a6344aac8c09253b3b630fb776ae94478aa0275b.incomplete'
+Download complete. Moving file to ckpts/README.md
+Downloading 'flux1-dev.safetensors' to 'ckpts/.cache/huggingface/download/Smp-gjyJObUFs5C0WYkxGzMzRdU=.4610115bb0c89560703c892c59ac2742fa821e60ef5871b33493ba544683abd7.incomplete'
+Downloading 'google/t5-v1_1-xxl/pytorch_model.bin.index.json' to 'ckpts/.cache/huggingface/download/google/t5-v1_1-xxl/8TePU6wZ6PO52hlgkfCnTYnlMSI=.1a33111ca9725d27f870b6797f3c9726654a0657.incomplete'
+Download complete. Moving file to ckpts/.gitattributes
+Fetching 20 files:   5%|▌         | 1/20 [00:00<00:06,  3.13it/s]Download complete. Moving file to ckpts/google/t5-v1_1-xxl/pytorch_model.bin.index.json
+Downloading 'google/t5-v1_1-xxl/special_tokens_map.json' to 'ckpts/.cache/huggingface/download/google/t5-v1_1-xxl/ahkChHUJFxEmOdq5GDFEmerRzCY=.881bdbffc06e471924ecea57f962bc5f8e2a9f21.incomplete'
+Downloading 'google/t5-v1_1-xxl/config.json' to 'ckpts/.cache/huggingface/download/google/t5-v1_1-xxl/8_PA_wEVGiVa2goH2H4KQOQpvVY=.d133daa4aefba0f8b2bd96d4cb52992b32dc693a.incomplete'
+Downloading 'google/t5-v1_1-xxl/spiece.model' to 'ckpts/.cache/huggingface/download/google/t5-v1_1-xxl/vj8E1loknrCNPSP8nWJC234Bff4=.d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86.incomplete'
+Download complete. Moving file to ckpts/google/t5-v1_1-xxl/spiece.model
+Download complete. Moving file to ckpts/google/t5-v1_1-xxl/config.json
+Downloading 'google/t5-v1_1-xxl/tokenizer_config.json' to 'ckpts/.cache/huggingface/download/google/t5-v1_1-xxl/vzaExXFZNBay89bvlQv-ZcI6BTg=.b114c318caf72f6e89ea92e0755c41327a453198.incomplete'
+Downloading 'hunyuan_vae.safetensors' to 'ckpts/.cache/huggingface/download/rC_Tmz9XhcSAre1oLgr0e8ZyRDU=.003e7c25ea79298e4c41c0b3e77ec2c977a7f810d0ab84847e4e5c1c3e9fe9c5.incomplete'
+Download complete. Moving file to ckpts/google/t5-v1_1-xxl/tokenizer_config.json
+Download complete. Moving file to ckpts/google/t5-v1_1-xxl/special_tokens_map.json
+Downloading 'openai/clip-vit-large-patch14/merges.txt' to 'ckpts/.cache/huggingface/download/openai/clip-vit-large-patch14/PtHk0z_I45atnj23IIRhTExwT3w=.76e821f1b6f0a9709293c3b6b51ed90980b3166b.incomplete'
+Downloading 'openai/clip-vit-large-patch14/config.json' to 'ckpts/.cache/huggingface/download/openai/clip-vit-large-patch14/8_PA_wEVGiVa2goH2H4KQOQpvVY=.2c19f6666e0e163c7954df66cb901353fcad088e.incomplete'
+Download complete. Moving file to ckpts/openai/clip-vit-large-patch14/config.json
+Downloading 'openai/clip-vit-large-patch14/model.safetensors' to 'ckpts/.cache/huggingface/download/openai/clip-vit-large-patch14/xGOKKLRSlIhH692hSVvI1-gpoa8=.a2bf730a0c7debf160f7a6b50b3aaf3703e7e88ac73de7a314903141db026dcb.incomplete'
+Download complete. Moving file to ckpts/openai/clip-vit-large-patch14/merges.txt
+Download complete. Moving file to ckpts/flux1-dev-ae.safetensors
+Downloading 'openai/clip-vit-large-patch14/tokenizer.json' to 'ckpts/.cache/huggingface/download/openai/clip-vit-large-patch14/HgM_lKo9sdSCfRtVg7MMFS7EKqo=.580c79c6862f31d1f9bd08dd1a415ba0d0502cd9.incomplete'
+Download complete. Moving file to ckpts/openai/clip-vit-large-patch14/tokenizer.json
+Downloading 'openai/clip-vit-large-patch14/tokenizer_config.json' to 'ckpts/.cache/huggingface/download/openai/clip-vit-large-patch14/vzaExXFZNBay89bvlQv-ZcI6BTg=.702bb12920b291cade3706cf215c1604d2255d93.incomplete'
+Download complete. Moving file to ckpts/openai/clip-vit-large-patch14/tokenizer_config.json
+Downloading 'openai/clip-vit-large-patch14/vocab.json' to 'ckpts/.cache/huggingface/download/openai/clip-vit-large-patch14/j3m-Hy6QvBddw8RXA1uSWl1AJ0c=.4297ea6a8d2bae1fea8f48b45e257814dcb11f69.incomplete'
+Download complete. Moving file to ckpts/openai/clip-vit-large-patch14/vocab.json
+Downloading 'openai/clip-vit-large-patch14/special_tokens_map.json' to 'ckpts/.cache/huggingface/download/openai/clip-vit-large-patch14/ahkChHUJFxEmOdq5GDFEmerRzCY=.9bfb42aa97dcd61e89f279ccaee988bccb4fabae.incomplete'
+Download complete. Moving file to ckpts/openai/clip-vit-large-patch14/special_tokens_map.json
+Download complete. Moving file to ckpts/hunyuan_vae.safetensors
+Download complete. Moving file to ckpts/openai/clip-vit-large-patch14/model.safetensors
+Download complete. Moving file to ckpts/google/t5-v1_1-xxl/pytorch_model-00002-of-00002.bin
+Download complete. Moving file to ckpts/google/t5-v1_1-xxl/pytorch_model-00001-of-00002.bin
+Download complete. Moving file to ckpts/flux1-dev.safetensors
+Download complete. Moving file to ckpts/Open_Sora_v2.safetensors
+Fetching 20 files:  10%|█         | 2/20 [01:44<18:26, 61.45s/it]Fetching 20 files: 100%|██████████| 20/20 [01:44<00:00,  5.23s/it]
+/gpfs/home2/pnair/Open-Sora/ckpts
+
+JOB STATISTICS
+==============
+Job ID: 11317350
+Cluster: snellius
+User/Group: pnair/pnair
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:01:42
+CPU Efficiency: 4.72% of 00:36:00 core-walltime
+Job Wall-clock time: 00:02:00
+Memory Utilized: 149.53 MB
+Memory Efficiency: 1.83% of 8.00 GB (8.00 GB/node)

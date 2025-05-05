@@ -18,13 +18,16 @@ class SamplingMethod(Enum):
     DISTILLED = "distill"  # for flux image generation
 
 
-def create_tmp_csv(save_dir: str, prompt: str, ref: str = None, create=True) -> str:
+def create_tmp_csv(save_dir: str, prompt: str, ref: str = None, ref_image: str = None, create=True) -> str:
     """
-    Create a temporary CSV file with the prompt text.
+    Create a temporary CSV file with the prompt text and optional reference image.
 
     Args:
         save_dir (str): The directory where the CSV file will be saved.
         prompt (str): The prompt text.
+        ref (str, optional): The reference video/image path for I2V/V2V.
+        ref_image (str, optional): The reference image path for personalized generation.
+        create (bool, optional): Whether to create the CSV file. Defaults to True.
 
     Returns:
         str: The path to the temporary CSV file.
@@ -35,6 +38,8 @@ def create_tmp_csv(save_dir: str, prompt: str, ref: str = None, create=True) -> 
     with open(tmp_file, "w", encoding="utf-8") as f:
         if ref is not None:
             f.write(f'text,ref\n"{prompt}","{ref}"')
+        elif ref_image is not None:
+            f.write(f'text,ref_image\n"{prompt}","{ref_image}"')
         else:
             f.write(f'text\n"{prompt}"')
     return tmp_file

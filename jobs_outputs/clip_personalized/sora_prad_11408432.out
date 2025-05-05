@@ -1,0 +1,187 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Running personalized video generation
+----------------------------------------------------------------------------------------
+/var/spool/slurm/slurmd/job11408432/slurm_script: line 34: cd: /home/pnair/FOMO: No such file or directory
+[04/27/25 13:02:26] INFO     colossalai - colossalai - INFO:                    
+                             /home/pnair/.conda/envs/opensora_prad/lib/python3.1
+                             0/site-packages/colossalai/initialize.py:75 launch 
+                    INFO     colossalai - colossalai - INFO: Distributed        
+                             environment is initialized, world size: 1          
+[[34m2025-04-27 13:02:26[0m] Inference configuration:
+ {'ae': {'from_pretrained': './ckpts/hunyuan_vae.safetensors',
+        'in_channels': 3,
+        'latent_channels': 16,
+        'layers_per_block': 2,
+        'out_channels': 3,
+        'type': 'hunyuan_vae',
+        'use_spatial_tiling': True,
+        'use_temporal_tiling': False},
+ 'batch_size': 1,
+ 'clip': {'from_pretrained': './ckpts/openai/clip-vit-large-patch14',
+          'max_length': 77,
+          'type': 'text_embedder'},
+ 'cond_type': 't2v',
+ 'config_path': '/home/pnair/Open-Sora/configs/diffusion/inference/t2i2v_256px.py',
+ 'dataset': {'type': 'text'},
+ 'dtype': 'bf16',
+ 'fps_save': 24,
+ 'img_flux': {'axes_dim': [16, 56, 56],
+              'cond_embed': False,
+              'context_in_dim': 4096,
+              'depth': 19,
+              'depth_single_blocks': 38,
+              'from_pretrained': './ckpts/flux1-dev.safetensors',
+              'guidance_embed': True,
+              'hidden_size': 3072,
+              'in_channels': 64,
+              'mlp_ratio': 4.0,
+              'num_heads': 24,
+              'qkv_bias': True,
+              'theta': 10000,
+              'type': 'flux',
+              'vec_in_dim': 768},
+ 'img_flux_ae': {'ch': 128,
+                 'ch_mult': [1, 2, 4, 4],
+                 'from_pretrained': './ckpts/flux1-dev-ae.safetensors',
+                 'in_channels': 3,
+                 'num_res_blocks': 2,
+                 'out_ch': 3,
+                 'resolution': 256,
+                 'scale_factor': 0.3611,
+                 'shift_factor': 0.1159,
+                 'type': 'autoencoder_2d',
+                 'z_channels': 16},
+ 'img_resolution': '768px',
+ 'model': {'axes_dim': [16, 56, 56],
+           'cond_embed': True,
+           'context_in_dim': 4096,
+           'depth': 19,
+           'depth_single_blocks': 38,
+           'from_pretrained': './ckpts/Open_Sora_v2.safetensors',
+           'fused_qkv': False,
+           'guidance_embed': False,
+           'hidden_size': 3072,
+           'in_channels': 64,
+           'mlp_ratio': 4.0,
+           'num_heads': 24,
+           'qkv_bias': True,
+           'theta': 10000,
+           'type': 'flux',
+           'use_liger_rope': True,
+           'vec_in_dim': 768},
+ 'motion_score': '4',
+ 'noise_level': 0.1,
+ 'prompt': 'a dog running on the beach',
+ 'ref_image': '/home/pnair/Open-Sora/assets/texts/dog.jpeg',
+ 'sampling_option': {'aspect_ratio': '16:9',
+                     'guidance': 7.5,
+                     'guidance_img': 3.0,
+                     'image_osci': True,
+                     'is_causal_vae': True,
+                     'method': 'i2v',
+                     'num_frames': 129,
+                     'num_steps': 50,
+                     'resolution': '256px',
+                     'scale_temporal_osci': True,
+                     'seed': None,
+                     'shift': True,
+                     'temporal_reduction': 4,
+                     'text_osci': True},
+ 'save_dir': 'samples',
+ 'seed': 42,
+ 't5': {'from_pretrained': './ckpts/google/t5-v1_1-xxl',
+        'max_length': 512,
+        'shardformer': True,
+        'type': 'text_embedder'},
+ 'use_t2i2v': True}
+[[34m2025-04-27 13:02:26[0m] Building dataset...
+[[34m2025-04-27 13:02:26[0m] Dataset contains 1 samples.
+[[34m2025-04-27 13:02:26[0m] Building models...
+[[34m2025-04-27 13:02:27[0m] Loading checkpoint from ./ckpts/Open_Sora_v2.safetensors
+[[34m2025-04-27 13:02:34[0m] Model loaded successfully
+[[34m2025-04-27 13:02:34[0m] Loading checkpoint from ./ckpts/hunyuan_vae.safetensors
+[[34m2025-04-27 13:02:34[0m] Model loaded successfully
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.43s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.52s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:07<00:00,  3.51s/it]
+[[34m2025-04-27 13:02:42[0m] Loading checkpoint from ./ckpts/flux1-dev.safetensors
+[[34m2025-04-27 13:02:49[0m] Model loaded successfully
+[[34m2025-04-27 13:02:49[0m] Loading checkpoint from ./ckpts/flux1-dev-ae.safetensors
+[[34m2025-04-27 13:02:49[0m] Model loaded successfully
+[[34m2025-04-27 13:02:49[0m] CUDA max memory max memory allocated at build model: 54.2 GB
+[[34m2025-04-27 13:02:49[0m] CUDA max memory max memory reserved at build model: 54.3 GB
+Inference progress:   0%|          | 0/1 [00:00<?, ?it/s][[34m2025-04-27 13:02:50[0m] Generating image condition by flux...
+Saved to samples/video_256px/generated_condition/prompt_0000.png
+[[34m2025-04-27 13:02:58[0m] Generating video...
+Inference progress:   0%|          | 0/1 [00:09<?, ?it/s]
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/pnair/Open-Sora/scripts/diffusion/inference.py", line 247, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/pnair/Open-Sora/scripts/diffusion/inference.py", line 228, in main
+[rank0]:     x = api_fn(
+[rank0]:   File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/gpfs/home2/pnair/Open-Sora/opensora/utils/sampling.py", line 640, in api_fn
+[rank0]:     z = personalize_latent(vae_latent, noise_level=noise_level)
+[rank0]:   File "/gpfs/home2/pnair/Open-Sora/opensora/utils/sampling.py", line 54, in personalize_latent
+[rank0]:     z = (1 - noise_level) * z + noise_level * noise
+[rank0]: RuntimeError: The size of tensor a (33) must match the size of tensor b (11) at non-singleton dimension 2
+[rank0]:[W427 13:03:00.239840005 ProcessGroupNCCL.cpp:1168] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+E0427 13:03:01.716000 23176028256064 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 1) local_rank: 0 (pid: 1400559) of binary: /home/pnair/.conda/envs/opensora_prad/bin/python
+Traceback (most recent call last):
+  File "/home/pnair/.conda/envs/opensora_prad/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/pnair/.conda/envs/opensora_prad/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/home/pnair/Open-Sora/scripts/diffusion/inference.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-04-27_13:03:01
+  host      : gcn128.local.snellius.surf.nl
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1400559)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+
+JOB STATISTICS
+==============
+Job ID: 11408432
+Cluster: snellius
+User/Group: pnair/pnair
+State: FAILED (exit code 1)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:01:23
+CPU Efficiency: 9.98% of 00:13:52 core-walltime
+Job Wall-clock time: 00:00:52
+Memory Utilized: 17.70 GB
+Memory Efficiency: 9.83% of 180.00 GB (180.00 GB/node)

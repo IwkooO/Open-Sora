@@ -1,0 +1,55 @@
+#!/bin/bash
+#SBATCH --partition=gpu_a100
+#SBATCH --gpus=1
+#SBATCH --job-name=setup
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=16
+#SBATCH --time=01:00:00
+#SBATCH --output=outputs/setup_%A.out
+
+# Step 1: Load required modules
+module purge
+module load 2023
+module load Anaconda3/2023.07-2
+
+# Step 2: Create and activate Conda environment
+
+# Load conda shell functions so that `conda activate` works in this SLURM batch job
+# This is needed because `.bashrc` is not sourced in non-interactive shells
+
+eval "$(/sw/arch/RHEL8/EB_production/2023/software/Anaconda3/2023.07-2/bin/conda shell.bash hook)" 
+
+
+conda create -y -n opensora_prad python=3.10
+conda activate opensora_prad
+
+# Step 3: Install required build tools
+conda install -y -c conda-forge cmake ninja packaging
+conda install -y -c nvidia cuda-nvcc=12.1
+
+# Step 4: Dynamically locate and set CUDA_HOME based on where nvcc was installed
+export CUDA_HOME=$(dirname $(dirname $(find $HOME/.conda/pkgs -name nvcc | head -n 1)))
+export PATH=$CUDA_HOME/bin:$PATH
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
+# Step 5: Confirm nvcc is accessible
+echo "nvcc location: $(which nvcc)"
+nvcc --version || echo "nvcc not found"
+echo "CUDA_HOME is: $CUDA_HOME"
+
+# Step 6: Install wheel (needed for setup.py builds)
+pip install wheel
+
+# download the repo
+git clone https://github.com/IwkooO/Open-Sora.git
+cd $HOME/Open-Sora
+
+
+# Ensure torch >= 2.4.0
+pip install -v . # for development mode, `pip install -v -e .`
+pip install xformers==0.0.27.post2 --index-url https://download.pytorch.org/whl/cu121 # install xformers according to your cuda version
+pip install flash-attn --no-build-isolation
+
+
+
+
