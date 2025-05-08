@@ -32,6 +32,7 @@ from opensora.models.mmdit.layers import (
     SingleStreamBlock,
     timestep_embedding,
 )
+from opensora.models.mmdit.ip_adapter import IPAdapter, IPAdapterProcessor
 from opensora.registry import MODELS
 from opensora.utils.ckpt import load_checkpoint
 
@@ -66,6 +67,7 @@ class MMDiTConfig:
         return hasattr(self, attribute_name)
 
 
+@MODELS.register_module()
 class MMDiTModel(nn.Module):
     config_class = MMDiTConfig
 
@@ -90,6 +92,7 @@ class MMDiTModel(nn.Module):
 
         self.hidden_size = config.hidden_size
         self.num_heads = config.num_heads
+        self.head_dim = config.hidden_size // config.num_heads
         pe_embedder_cls = LigerEmbedND if config.use_liger_rope else EmbedND
         self.pe_embedder = pe_embedder_cls(
             dim=pe_dim, theta=config.theta, axes_dim=config.axes_dim
@@ -146,10 +149,29 @@ class MMDiTModel(nn.Module):
             self.forward = self.forward_ckpt
         self._input_requires_grad = False
 
+        # Initialize IP-Adapter
+        self.ip_adapter = IPAdapter(self.hidden_size, self.num_heads)
+
     def initialize_weights(self):
         if self.config.cond_embed:
             nn.init.zeros_(self.cond_in.weight)
             nn.init.zeros_(self.cond_in.bias)
+            
+        # Initialize IP-Adapter weights
+        if hasattr(self, 'ip_adapter'):
+            nn.init.normal_(self.ip_adapter.image_proj.weight, std=0.02)
+            nn.init.zeros_(self.ip_adapter.image_proj.bias)
+            
+        # Initialize MLP weights
+        for block in self.double_blocks:
+            nn.init.normal_(block.img_mlp.fc1.weight, std=0.02)
+            nn.init.zeros_(block.img_mlp.fc1.bias)
+            nn.init.normal_(block.img_mlp.fc2.weight, std=0.02)
+            nn.init.zeros_(block.img_mlp.fc2.bias)
+            nn.init.normal_(block.txt_mlp.fc1.weight, std=0.02)
+            nn.init.zeros_(block.txt_mlp.fc1.bias)
+            nn.init.normal_(block.txt_mlp.fc2.weight, std=0.02)
+            nn.init.zeros_(block.txt_mlp.fc2.bias)
 
     def prepare_block_inputs(
         self,
@@ -215,14 +237,18 @@ class MMDiTModel(nn.Module):
         y_vec: Tensor,
         cond: Tensor = None,
         guidance: Tensor | None = None,
+        ref_features: Tensor = None,
+        ip_scale: float = 1.0,
         **kwargs,
     ) -> Tensor:
         img, txt, vec, pe = self.prepare_block_inputs(
             img, img_ids, txt, txt_ids, timesteps, y_vec, cond, guidance
         )
 
+        # Set IP-Adapter processor for each block
         for block in self.double_blocks:
-            img, txt = auto_grad_checkpoint(block, img, txt, vec, pe)
+            block.processor = IPAdapterProcessor(self.ip_adapter)
+            img, txt = auto_grad_checkpoint(block, img, txt, vec, pe, ref_features, ip_scale)
 
         img = torch.cat((txt, img), 1)
         for block in self.single_blocks:
@@ -242,6 +268,8 @@ class MMDiTModel(nn.Module):
         y_vec: Tensor,
         cond: Tensor = None,
         guidance: Tensor | None = None,
+        ref_features: Tensor = None,
+        ip_scale: float = 1.0,
         **kwargs,
     ) -> Tensor:
         img, txt, vec, pe = self.prepare_block_inputs(
@@ -250,10 +278,12 @@ class MMDiTModel(nn.Module):
 
         ckpt_depth_double = self.config.grad_ckpt_settings[0]
         for block in self.double_blocks[:ckpt_depth_double]:
-            img, txt = auto_grad_checkpoint(block, img, txt, vec, pe)
+            block.processor = IPAdapterProcessor(self.ip_adapter)
+            img, txt = auto_grad_checkpoint(block, img, txt, vec, pe, ref_features, ip_scale)
 
         for block in self.double_blocks[ckpt_depth_double:]:
-            img, txt = block(img, txt, vec, pe)
+            block.processor = IPAdapterProcessor(self.ip_adapter)
+            img, txt = block(img, txt, vec, pe, ref_features, ip_scale)
 
         ckpt_depth_single = self.config.grad_ckpt_settings[1]
         img = torch.cat((txt, img), 1)

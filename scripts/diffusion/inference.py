@@ -222,6 +222,19 @@ def main():
                 if "motion_score" in cfg:
                     batch["text"] = add_motion_score_to_text(batch.pop("text"), cfg.get("motion_score", 5))
 
+                # Process reference image for IP-Adapter if provided
+                if cfg.get("ref_image"):
+                    ref_image = batch.get("ref_image", cfg.ref_image)
+                    if ref_image:
+                        # Load and preprocess reference image
+                        from opensora.datasets.utils import read_from_path
+                        ref_image = read_from_path(ref_image, (cfg.sampling_option.height, cfg.sampling_option.width), transform_name="resize_crop")
+                        ref_image = ref_image.unsqueeze(0).to(device, dtype)
+                        # Get CLIP features for reference image
+                        ref_features = model_clip.encode_image(ref_image)
+                        batch["ref_features"] = ref_features
+                        batch["ip_scale"] = cfg.get("ip_scale", 1.0)
+
                 logger.info("Generating video...")
                 x = api_fn(
                     sampling_option,

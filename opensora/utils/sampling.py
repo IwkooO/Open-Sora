@@ -297,6 +297,8 @@ class PersonalizedDenoiser(Denoiser):
         ref_guidance_scale = kwargs.pop("ref_guidance_scale", None)
         z_ref = kwargs.pop("z_ref", None)
         sigma_min = kwargs.pop("sigma_min", 1e-5)
+        ref_features = kwargs.pop("ref_features", None)
+        ip_scale = kwargs.pop("ip_scale", 1.0)
 
         # cond ref arguments
         masks = kwargs.pop("masks", None)
@@ -336,6 +338,8 @@ class PersonalizedDenoiser(Denoiser):
                 **kwargs,
                 timesteps=t_vec,
                 guidance=guidance_vec,
+                ref_features=ref_features,
+                ip_scale=ip_scale,
             )
 
             # prepare guidance
@@ -344,6 +348,10 @@ class PersonalizedDenoiser(Denoiser):
                 get_oscillation_gs(guidance_img, i) if image_osci else guidance_img
             )
             cond, uncond, uncond_2 = pred.chunk(3, dim=0)
+            if image_gs > 1.0 and scale_temporal_osci:
+                # Apply temporal oscillation scaling for image guidance
+                t_ratio = t_curr / timesteps[0]  # Current timestep ratio (0 to 1)
+                image_gs = image_gs * (1.0 - 0.5 * t_ratio)  # Gradually reduce influence as denoising progresses
 
             # Apply CFG
             pred_cfg = uncond_2 + image_gs * (uncond - uncond_2) + text_gs * (cond - uncond)
@@ -380,6 +388,8 @@ class PersonalizedDenoiser(Denoiser):
         ret["guidance_img"] = kwargs.pop("guidance_img")
         ret["ref_guidance_scale"] = kwargs.pop("ref_guidance_scale", None)
         ret["z_ref"] = kwargs.pop("z_ref", None)
+        ret["ref_features"] = kwargs.pop("ref_features", None)
+        ret["ip_scale"] = kwargs.pop("ip_scale", 1.0)
 
         # text
         if neg is None:

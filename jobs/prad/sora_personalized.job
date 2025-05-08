@@ -39,5 +39,6 @@ torchrun --nproc_per_node 1 --standalone /home/pnair/Open-Sora/scripts/diffusion
   --prompt "a dog walking on the beach" \
   --ref_image /home/pnair/Open-Sora/assets/texts/dog.jpeg \
   --noise_level 0.1 \
-  --ref_guidance_scale 10.0 \
-  --method personalized
+  --ref_guidance_scale 100.0 \
+  --method personalized \
+  --ip_scale 10.0 
